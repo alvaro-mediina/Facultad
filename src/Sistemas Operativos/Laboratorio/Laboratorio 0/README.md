@@ -29,6 +29,19 @@ Se pide investigar por nuestra cuenta el funcionamiento de los distintos **coman
 
 La resolución de este práctico es individual. Deben entregar un archivo .sh a través del aula virtual, con un comando de una línea por cada ejercicio. El práctico no se evalúa con nota, pero debe estar aprobado para poder promocionar o regularizar la materia.
 
+### Archivo con extensión .sh
+He investigado que los archivos con extensión .sh son scripts de shell, es decir, scripts de comandos de shell.
+
+**Crear un archivo:**
+- Primero debo situarme en la carpeta donde quiero que se guarde el archivo.
+- Luego, debo abrir la terminal y escribir el comando `nano nombre_archivo.sh` (reemplazando `nombre_archivo` por el nombre que quiero que tenga el archivo y obviamente tener nano instalado).
+- Una vez dentro del editor de texto, debo escribir los comandos de una línea por cada ejercicio pero antes tener en cuenta de dejar como primera línea la almohadilla:
+`#!/bin/bash`.
+- Para guardar el archivo, debo presionar `Ctrl + O` y luego `Enter`.
+- Para salir del editor de texto, debo presionar `Ctrl + X.
+- Por último, debo darle **permisos de ejecución** al archivo con el comando `chmod 777 nombre_archivo.sh`
+- Luego para ejecutar el script debo escribir: `./nombre_archivo.sh`
+
 ## Ejercicios
 1) ¿Qué modelo de procesador tiene tu equipo?
 
