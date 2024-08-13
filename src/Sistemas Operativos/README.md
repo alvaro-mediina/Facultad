@@ -55,4 +55,4 @@ En particular se utilizará el libro:
 ## Laboratorio
 En este apartado se encontrarán links a los distintas carpetas que contienen los laboratorios de la materia:
 
-- [Laboratorio 0](Laboratorio/Laboratorio%200/)
+- [Laboratorio 0](Laboratorio/Laboratorio%200/README.md)
