@@ -32,6 +32,10 @@ La resolución de este práctico es individual. Deben entregar un archivo .sh a 
 ### Archivo con extensión .sh
 He investigado que los archivos con extensión .sh son scripts de shell, es decir, scripts de comandos de shell.
 
+<p align="center" style="font-size:20px">
+<a href="https://docs.fileformat.com/es/programming/sh/">Información sobre los archivos SH</a>
+</p>
+
 **Crear un archivo:**
 - Primero debo situarme en la carpeta donde quiero que se guarde el archivo.
 - Luego, debo abrir la terminal y escribir el comando `nano nombre_archivo.sh` (reemplazando `nombre_archivo` por el nombre que quiero que tenga el archivo y obviamente tener nano instalado).
@@ -49,16 +53,64 @@ He investigado que los archivos con extensión .sh son scripts de shell, es deci
     
     >Ayuda: ver la definición y el uso de los comandos cat y grep.
 
+    ### Definición y usos de los comandos **cat** y **grep**
+    - **cat**: Concatena archivos y los imprime en la salida estándar.
+        ```bash
+            > cat [opciones] [archivo]
+        ```
+    - **grep**: Filtra líneas de texto que coincidan con un patrón.
+        ```bash 
+            > grep [opciones] [patrón] [archivo]
+        ```
+        En particular si utilizamos la opción `-m1` nos devolverá la primera coincidencia.
 <br>
 
 2) Si la computadora tiene más de una unidad de ejecución (multi-core) seguramente en el punto anterior se repitió más de una vez el modelo del procesador. Averiguar cómo usar wc para poder determinar cuántas unidades de ejecución tiene el procesador, aprovechando los comandos utilizados en el ejercicio 1.
 
+    ### Uso del comando **wc**
+
+    ```bash
+        > wc [opciones] [archivo]
+    ```
+
+    **-l**: Cuenta las líneas.
+    
+    **-w**: Cuenta las palabras.
+
+
 <br>
 
-3) Usted tiene la maravillosa idea de crear una red social para superhéroes donde puedan interactuar sin máscaras y con sus nombres verdaderos (todo financiado por Bruce Wayne o Tony Stark, dependiendo del estudio). Para la semana de lanzamiento, le enviará una invitación personalizada a cada superhéroe. Su base de datos es el siguiente archivo heroes.csv.  Notar que la segunda columna contiene el nombre real de cada superhéroe, pero los usuarios en su sistema deben estar todos en minúsculas y sin espacios. 
+3) Usted tiene la maravillosa idea de crear una red social para superhéroes donde puedan interactuar sin máscaras y con sus nombres verdaderos (todo financiado por Bruce Wayne o Tony Stark, dependiendo del estudio). Para la semana de lanzamiento, le enviará una invitación personalizada a cada superhéroe. Su base de datos es el siguiente archivo [heroes.csv](https://raw.githubusercontent.com/dariomalchiodi/superhero-datascience/master/content/data/heroes.csv).  Notar que la segunda columna contiene el nombre real de cada superhéroe, pero los usuarios en su sistema deben estar todos en minúsculas y sin espacios. 
 
     ¿Cómo obtendría esta lista de nombres de usuarios con un único comando bash? Incluso la descarga del archivo. Puntos extra si eliminan las líneas en blanco del resultado.
     > Ayuda: dividir el problema en varias subpartes: descargar archivo, separar la columna deseada, modificar texto, etc. Los comandos de bash pueden ponerse en una misma línea utilizando conectores adecuados, que tienen distinta semántica.
+
+    En principio utilizando la ayuda (Divide y vencerás) podemos hacer lo siguiente:
+
+    ### Uso del comando **wget (Descargar archivo)**
+
+    ```bash
+        > wget [opciones] [URL]
+    ```
+    **-O**: Guarda el archivo con el nombre que le indiquemos (En particular crea un archivo).
+    ```bash
+        > wget -O [nombre_archivo] [URL]
+    ```
+    ### Uso del comando **curl** (Parsea el archivo desde la URL)
+    ```bash
+        > curl [opciones] [URL]
+    ```
+
+
+    ### Uso del comando **awk (Separar la columna deseada)**
+
+    ```bash
+        > awk [opciones] [archivo]
+    ```
+    **-F**: Define el separador de campos.
+    ```bash
+        > awk -F"," '{print $2}' [archivo]
+    ```
 
 <br>
 
