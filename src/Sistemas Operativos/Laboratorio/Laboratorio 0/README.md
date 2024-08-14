@@ -77,6 +77,8 @@ He investigado que los archivos con extensión .sh son scripts de shell, es deci
     
     **-w**: Cuenta las palabras.
 
+    **'NF'**: Imprime solo las líneas donde `NF` es `True`, es decir, sólo donde el número de campos sea mayor a 0.
+
 
 <br>
 
@@ -109,8 +111,18 @@ He investigado que los archivos con extensión .sh son scripts de shell, es deci
     ```
     **-F**: Define el separador de campos.
     ```bash
-        > awk -F"," '{print $2}' [archivo]
+        > awk -F "," '{print $2}' [archivo]
     ```
+
+    > Tener en cuenta que cuando abrimos {} (llaves) nos situamos en un entorno de programación secuencial de awk, es decir, podemos realizar operaciones con los campos que se nos presentan como por ejemplo printear el campo 2.
+
+    ### Uso del comando tr (Modificar texto)
+
+    ```bash
+        > tr [opciones] [caracter_a_reemplazar] [caracter_reemplazo]
+    ```
+
+    > Tener en cuenta que en este comando tenemos que el primer arreglo son los caracteres a reemplazar y el segundo arreglo es el caracter de reemplazo.
 
 <br>
 

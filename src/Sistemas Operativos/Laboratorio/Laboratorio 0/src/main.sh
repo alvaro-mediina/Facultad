@@ -10,4 +10,4 @@ echo "Cantidad de unidades de ejecución: $(grep 'model name' /proc/cpuinfo | wc
 
 #Ejercicio 3
 echo -e "\nEjercicio 3\n"
-curl https://raw.githubusercontent.com/dariomalchiodi/superhero-datascience/master/content/data/heroes.csv | awk -F ";" '{print $2}'
+curl https://raw.githubusercontent.com/dariomalchiodi/superhero-datascience/master/content/data/heroes.csv | awk -F ";" '{print $2}' | tr -d '[:blank:]' | tr '[:upper:]' '[:lower:]' | awk 'NF'
