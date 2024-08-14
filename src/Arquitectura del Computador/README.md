@@ -58,13 +58,15 @@ Aprenderemos en detalle el funcionamiento interno y el incremento de performance
 
 ### Tema 1: Hardware Description Languages (HDLs): VHDL y System Verilog (Un estudio comparativo)
 
-Lenguajes utilizados para escribir Hardware (Según Pablo)
+<p align="center">Lenguajes utilizados para escribir Hardware (Según Pablo)
+</p>
 
-> **VHDL**:  es un acrónimo para VHSIC Lenguaje de descripción de Hardware. VHSIC es un acrónimo para los proyectos de circuitos integrados de muy alta velocidad. Básicamente utilizado como un estándar.
+> **VHDL**:  es un acrónimo para VHSIC Lenguaje de descripción de Hardware. VHSIC es un acrónimo para los proyectos de circuitos integrados de muy alta velocidad. Básicamente utilizado como un estándar. Muy utilizado para simulación y sintetización. VHDL es un lenguaje de modelado, no de especificación. _"Todo lo que existe puede ser modelado, pero no todo lo que se especifica puede ser sintetizado."_
 
-> **Verilog**: Fué desarrollado por Gateway Deign Automation como un lenguaje propieatario para la simulación lógica en 1984. En 1990 se convirtió en un estándar IEEE. Hay muchos textos en Verilog, pero el estándar IEEE es legible y autorizado.
+> **Verilog**: Fué desarrollado por Gateway Deign Automation como un lenguaje propieatario para la simulación lógica en 1984. En 1990 se convirtió en un estándar IEEE. Hay muchos textos en Verilog, pero el estándar IEEE es legible y autorizado. Lenguaje de descripción de Hardware utilizado para modelar sistemas electrónicos. A veces llamado Verilog HDL (Hardware Description Language).
 
 ```vhdl
+-- VHDL
 library IEEE; use IEEE.STD_LOGIC_1164.all
 
 -- Interfaz
@@ -89,6 +91,7 @@ end;
 > System Verilog: Es una extensión de Verilog que incluye muchas características nuevas y mejoradas para la descripción de hardware y la verificación.
 
 ```verilog
+//System Verilog
 //Combinacional
 module sillyfunction(input logic a, b, c, output logic y);
     assign y = ~a & ~b & ~c |
@@ -96,8 +99,9 @@ module sillyfunction(input logic a, b, c, output logic y);
                ~a & b & ~c
 ```
 
-```verilog
-//Tener en cuenta que en la salida y las entradas son vectores de 32 bits
+```vhdl
+--VHDL  
+--Tener en cuenta que en la salida y las entradas son vectores de 32 bits
 library IEEE; use IEEE.STD_LOGIC_1164.all
 use IEEE.STD_LOGIC_UNSIGNED.all
 
@@ -113,6 +117,7 @@ end;
 ```
 
 ```verilog
+//System Verilog
 //Ahora tener en cuenta que las entradas y salidas son base de 32 bits
 module adder(input logic [31:0] a, 
             input logic [31:0] b, 
