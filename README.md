@@ -5,7 +5,7 @@ La idea principal de este repositorio es practicar `Markdown` y tener a mano los
 ## Materias
 - [Sistemas Operativos](src/Sistemas%20Operativos/README.md)
     - [Teorico/Práctico](#teoricopractico)
-    - [Laboratorio](#laboratorio)
+    - [Laboratorio 0](src/Sistemas%20Operativos/Laboratorio/Laboratorio%200/README.md)
+- [Arquitectura del Computador](src/Arquitectura%20del%20Computador/README.md)
 - [Ingeniería del Software I](src/Ingenieria%20del%20Software%20I/README.md)
-    - [Teorico/Práctico](#teoricopractico-1)
-    - [Laboratorio](#laboratorio-1)
+    - [Teorico/Práctico](src/Ingenieria%20del%20Software%20I/Teórico/Resumen.md)
