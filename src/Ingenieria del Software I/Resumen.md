@@ -132,14 +132,6 @@ Estas cuestions se manejan a través de la **administración** del proceso. Sin 
 Son importantes para poder planear y administrar las métricas y medidas.
 
 
-#### Glosario
-- KLOC: Líneas de Código en K. (Medida)
-- LOC: Líneas de Código (Medida)
-- PM: Persona/Mes
-- Failure: Observación que tengo del "bug"
-- Fault
-- C&P: Calidad y Productividad
-- SRS: Software Requirement Specification
 
 ### Capítulo 3: Análisis y especificación de los requisitos del software
 
@@ -169,7 +161,25 @@ Definición de la IEEE a **requirement**:
 
 #### Need for SRS
 
+> Es muy importante un SRS, tener muy en cuenta a la hora de desarrollar.
 
+> Se encuentran muchos errores en los sistemas a menudo, todos estos suelen ser por falta de un buen SRS.
+
+>De alguna manera, los **requirements** del sistema que satisfarán las necesidades de los clientes y las preocupaciones de los usuarios deben ser comunicados al desarrollador. El problema es que el cliente generalmente no entiende el software ni el proceso de desarrollo de software, y el desarrollador a menudo no comprende el problema del cliente ni el área de aplicación. Esto causa una brecha de comunicación entre las partes involucradas en el proyecto de desarrollo. Un propósito básico de la software requirements specification es cerrar esta brecha de comunicación.
+
+    Ventaja: Un SRS establece la base para un acuerdo entre el cliente y el proveedor sobre lo que hará el producto de software.
+
+> Un SRS proporciona una referencia para la validación del producto final (Con el cliente; Necesario para la satisfacción del mismo).
+
+> Es decir, el SRS ayuda al cliente a determinar si el software cumple con los requirements. Sin un SRS adecuado, no hay manera de que un cliente pueda determinar si el software que se está entregando es lo que se solicitó, y no hay manera de que el desarrollador pueda convencer al cliente de que se han cumplido todos los requirements.
+
+> Se detectó que la mayoría de los errores en los sistemas de software se deben a la falta de un buen SRS. Por lo tanto, la especificación de requirements es una de las actividades más críticas en el desarrollo de software.
+
+> Un SRS de alta calidad es un requisito previo para un software de alta calidad.
+
+> Un SRS de alta calidad reduce el costo de desarrollo y mantenimiento del software.
+
+> La calidad del SRS impacta la satisfacción del cliente (y del desarrollador), la validación del sistema, la calidad del software final y el costo de desarrollo del software. El papel crítico que juega el SRS en un proyecto de desarrollo de software debería ser evidente a partir de estos puntos.
 
 ### Summary
     1. The problem domain for software engineering is industrial strength software. 
@@ -182,3 +192,11 @@ Definición de la IEEE a **requirement**:
 
     4. The fundamental approach of software engineering to achieve the objectives is to separate the development process from the products. Software engineering focuses on process since the quality of products developed and the productivity achieved are heavily influenced by the process used. To meet the software engineering challenges, this development process is a phased process. Another key approach used in Software Engineering for achieving high Q&P is to manage the process effectively and proactively using metrics.
 
+#### Glosario
+- KLOC: Líneas de Código en K. (Medida)
+- LOC: Líneas de Código (Medida)
+- PM: Persona/Mes
+- Failure: Observación que tengo del "bug"
+- Fault
+- C&P: Calidad y Productividad
+- SRS: Software Requirement Specification
