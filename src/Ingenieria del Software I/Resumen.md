@@ -133,7 +133,7 @@ Son importantes para poder planear y administrar las métricas y medidas.
 
 
 
-### Capítulo 3: Análisis y especificación de los requisitos del software
+### Chapter 3: Análisis y especificación de los requisitos del software
 
 #### Introducción
 
@@ -149,13 +149,15 @@ Son importantes para poder planear y administrar las métricas y medidas.
 
 #### Software Requirements
 
+> Diferencia entre **cliente** y **usuario**: El cliente pone el dinero para el producto y el usuario lo utiliza. El mismo cliente puede ser el usuario.
+
 Definición de la IEEE a **requirement**:
 - Una condición o capacidad necesaria para que un usuario resuelva un problema o alcance un objetivo.
 - Una condición o capacidad que debe ser cumplida o poseída por un sistema ... para satisfacer un contrato, estándar, especificación u otro documento impuesto formalmente.
 
 > Es importante notar que en software requirements estamos tratando con los requisitos del sistema propuesto, es decir, las capacidades que el sistema, que aún está por desarrollarse, debería tener. Es porque estamos tratando de especificar un sistema que no existe que el problema de los requirements se vuelve complicado.
 
-> El objetivo de la actividad de requirements es producir la Software Requirements Specification (SRS), que describe lo que el software propuesto debería hacer sin describir cómo lo hará.
+> El objetivo de la actividad de requirements es producir la Software Requirements Specification (SRS), que describe lo que el software propuesto debería hacer sin describir cómo lo hará. Es un **contrato** con el cliente.
 
 > Producir el SRS es más fácil de decir que de hacer. Una limitación básica para esto es que las necesidades del usuario siguen cambiando a medida que cambia el entorno en el que el sistema debe funcionar con el tiempo.
 
@@ -181,6 +183,195 @@ Definición de la IEEE a **requirement**:
 
 > La calidad del SRS impacta la satisfacción del cliente (y del desarrollador), la validación del sistema, la calidad del software final y el costo de desarrollo del software. El papel crítico que juega el SRS en un proyecto de desarrollo de software debería ser evidente a partir de estos puntos.
 
+#### Requirement Process
+
+> Análisis: Entender el problema y los requisitos del sistema.
+
+> Especificar: Plasmar toda la información del análisis en la SRS.
+
+> El proceso no es lineal; es iterativo y en paralelo.
+
+> Existe superposición entre las fases: algunas partes pueden estar siendo especificadas mientras otras están aún bajo análisis.
+
+> La especificación misma puede ayudar al análisis.
+
+> La validación puede mostrar brechas que conducirán a más análisis y más especificación.
+
+    Objetivo en general: Dividir y conquistar cada una de las fases.
+
+
+### Análisis del Problema
+    Objetivo: Lograr una buena comprensión de las necesidades, requerimientos, y restricciones del software.
+
+El principio básico del análisis es **particionar el problema**. Luego comprender cada subproblema y relación entre ellos respecto a las funciones (análisis estructural), objetos (análisis OO), eventos del sistema (particionado de eventos).
+
+> Modelar el flujo de datos es un recurso ampliamente utilizado enfocándose en las funciones realizadas en  el sistema. no en los requisitos no funcionales. Para el modelado se utilizan diagramas de flujo de datos (DFD).
+
+La idea de analizar el problema es intentar **NO** resolver el problema, sino entenderlo y para ello se lleva un estudio completo.
+
+![alt text](imgs/image.png)
+ 
+> Tener en cuenta los símbolos, la forma en la que un DFD se arma como los sustantivos que llevan los globitos, verbos, entre otros.
+
+> Tener **MUY** en cuenta el método funcional para hacer análisis de requerimientos (DFD) ya que tenemos 2, uno es ese y el otro es el modelado orientado a objetos.
+
+#### Modelado orientado a Objetos
+
+![alt text](imgs/image-2.png)
+
+> Cada clase está conformada por nombre, atributos y servicios.
+
+> Tener en cuenta los símbolos, por ejemplo el puntito de Sale que entre a la clase proveniente de _Drug-Store_ hace referencia a la relación _uno a muchos_. A su vez como lo hace el rombito que habla de herencia.
+
+#### Prototipado
+
+#### Especificación de los requerimientos
+- Se supone que en cuanto mejor entiendamos el problema y los requerimientos, mejor será la especificación y la resolución del problema.
+
+- La salida final de esta primera etapa es la SRS.
+
+- Los modelados (OO o DFD) no son SRS.
+
+**Características de una SRS**:
+- Completa
+- Correta
+- No ambigua
+- Consistente
+- Verificable
+- Rasteable (Traceable): Dónde se encuentra lo que pedí (siendo cliente) y dónde se encuentra en el SRS. Es una doble implicación.
+- Modificable: 
+- Ordenada en aspectos de importancia y estabilidad
+
+#### Componentes de una SRS
+Una SRS debe tener lineamientos sobre qué se debe especificar en una STS ayudará a conseguir completitud.
+
+- Requerimientos de desempeño: Estáticos y Dinámicos.
+- Restricciones de diseño: Ajustarse a estándares y compatibilidad con otros sistemas, limitaciones de hardware y otros recursos.
+- Requerimientos de confiabilidad: tolerancia a falla, respaldo y seguridad.
+
+#### Lenguajes de especificación
+ - Los lenguajes de especificación deben facilitar escribir SRS con las características deseadas, modificabilidad, no ambigüedad, etc.
+
+ - A la vez deben ser fáciles de aprender.
+ - Los lenguajes formales son precisos y carecen de ambigüedades pero no son muy fáciles de aprender.
+
+#### Alcance
+Preguntas que se van a contestar en el TH.
+
+#### Estructura de un documento de requerimientos
+Según la IEEE hay ciertos requerimentos:
+- Introducción
+    * Propósito
+    * Alcance
+    * Definiciones, acrónimos y abreviaturas
+    * Referencias
+    * Visión general del documento
+- Descripción general
+- Requerimientos específicos
+- Entre otros...
+
+#### Especificación funcional con casos de uso
+Conceptos básicos:
+ - **Actor:** Una persona o sistema que interactúa con el sistema propuesto para alcanzar un objetivo. Por ejemplo, el usuario de un cajero automático.
+    * **Actor primario:** EL actor principal que inicia el caso de uso. El caso de uso debe satisfacer su objetivo (AP es el interesado). La ejecucion real puede ser realizada por un sistema u otra persona en representación del actor primario.
+ - **Escenario:** Es un conjunto de acciones realizadas con el fin de alcanzar un objetivo bajo determinadas condiciones. Las acciones se especifican mediante un conjunto de pasos.
+
+ **Ejemplo**
+
+ Pequeño sistema para
+ - Caso de uso 1: Poner un ítem bajo subasta
+    * Actor primario: Vendedor
+    * Precondición: El vendedor está logueado dentro del sistema
+    * Escenario exitoso principal:
+        * El vendedor ...
+        * El sistema ...
+        * El vendedor ...
+        * El sistema ...
+    > Claramente se ve la interacción entre el AP y el sistema.
+        * ...
+    * Escenarios excepcionales:
+        * No existen ítems subastados bajo la misma categoría.
+        * El sistema le informa al vendedor la situación.
+
+ - Caso de uso 2: Efectuar una oferta:
+    * Actor primario: Comprador
+    * ...
+ - Caso de uso 3: Completar una subasta
+    * Actor primario: Sistema de subasta.
+    * ...
+ - Caso de uso 0: Subastar un ítem:
+    * Actor primario: Sistema de  subasta
+    * Ámbito: Organización conductora de la subasta
+    * Precondición: Ninguna.
+    * Escenario exitoso principal:
+        * El vendedor _pone un item bajo subasta_.
+        > Un caso de uso puede llamar a otros casos de uso.
+        * Varios compradores _efectúan ofertas_
+        * En la fecha de cierre se _completa la subasta_ del ítem.
+
+#### Elaboración de los casos de uso - Niveles de abstracción
+- No utilizar verbos conjugados estrambóticamente.
+- Cuidado con los adjetivos calificativos.
+- Para escribir, utilizar reglas simples en las expresiones.
+
+### Validación de los requerimientos
+Debido a la naturaleza de esta etapa, hay muchas posibilidades de malentendidos, implicando que muchos errores son posibles.
+ - Es caro corregir los defectos de requerimientos más tarde.
+ - Se deben intentar corregir en esta etapa.
+ - La SRS se revisa por un grupo de personas.
+ - Proceso
+ - Lista de control:
+    * ¿Se definieron todos los recursos de hardware?
+    * ¿Se especificaron los tiempos de respuestas de las funciones?
+    * ¿Se definió todo el hardware, el software externo y las interfaces de datos?
+    * ¿Son testeables todos los requerimientos?
+    * ...
+Además, existen herramientas para el modelado y análisis de especificaciones. 
+- Se escriben en lenguajes de especificación formal.
+
+### Métricas
+
+> Poner un valor para luego compararlo con nuevos valores para así **analizar errores** y **mejoras**. 
+
+Para poder estimar costos y tiempos y planear el proyecto se necesita "medir" el esfuerzo que demandará.
+ 
+ - El esfuerzo del proyecto depende de muchos factores.
+ - El **tamaño** es el principal factor, validando por muchos experimentos y datos del análisis.
+
+#### Punto función
+
+> Estimación similar a las líneas de código.
+
+- Es una estimacióon similar a la métrica LOC.
+- Se determina sólo con la SRS.
+- Define el tamaño en términos de la "funcionalidad"
+
+Tipos de funciones:
+ - Entradas externas: tipos de entrada externas a la aplicación
+ - Salidas externas: salidas del sistema
+ - Archivos lógicos internos
+ - Archivos de interfaz externa.
+ - Transacciones externas
+
+ > Básicamente agarro la SRS y empiezo a explicar el uso las funciones.
+
+ ![alt text](imgs/image-3.png)
+ 
+ Para hacer un punto de función debo conocer la fórmula de la UFP:
+ 
+ $
+ UFP=\sum_{i=1}^{i=5}{\sum{}_{j=1}^{i=3}}w_{ij}C_{ij}
+ $
+
+Donde i refleja las filas y j las columnas. $w_{ij}$ es el peso de la función y $C_{ij}$ es la cantidad de funciones.
+
+#### Metricas de calidad
+
+- Directas: Evalúan la calidad del documento estimando el valor de los atributos de calidad de la SRS.
+
+- Indirectas: Evalúan la efectividad de las métricas del control de calidad usadas en el proceso en la fase de requerimientos
+
+
 ### Summary
     1. The problem domain for software engineering is industrial strength software. 
 
@@ -192,6 +383,7 @@ Definición de la IEEE a **requirement**:
 
     4. The fundamental approach of software engineering to achieve the objectives is to separate the development process from the products. Software engineering focuses on process since the quality of products developed and the productivity achieved are heavily influenced by the process used. To meet the software engineering challenges, this development process is a phased process. Another key approach used in Software Engineering for achieving high Q&P is to manage the process effectively and proactively using metrics.
 
+
 #### Glosario
 - KLOC: Líneas de Código en K. (Medida)
 - LOC: Líneas de Código (Medida)
@@ -200,3 +392,4 @@ Definición de la IEEE a **requirement**:
 - Fault
 - C&P: Calidad y Productividad
 - SRS: Software Requirement Specification
+- Brainstorming: interactuar con el cliente para establecer las propiedades deseadas.

@@ -59,11 +59,33 @@ Recomendaciones:
 - Aprobar el Take Home (Se puede elegir grupo)
 - No dejar de interactuar con los profesores.
 - Para el parcial NO utilizar una palabra para definir una palabra.
+- Utilizar verbos en presente y ser lo más básico para hablar en el sentido de que se entienda pero no dejar la tecnicidad.
+- En **diseño**, intentar que nuestro producto sea lo más accesible posible.
 
 
 A tener en cuenta:
 - No se puede seguir con e proyecto si te quedás libre en el teórico.
 - El tiempo vale oro.
+
+### Preguntas Parcial
+
+#### Dominio del problema
+
+ - Desafios de la IS: Tener en cuenta las 5 palabras claves. 
+
+ - En escala así como puede subir, también puede bajar.
+
+ - ¿Por qué los procesos están divididos en fases? Nombrar las fases típicas: Testing, etc.
+
+#### SRS
+ - Nombrar las actividades básicas de los requerimientos del software: Análisis del problema o requerimientos, Especificación de los requerimientos y Validación.
+
+#### Análisis del problema
+ - Cuáles son los pasos principales para armar un DFD.
+
+#### Especificación de los requerimientos
+- Qué es una SRS.
+- Características de una SRS.
 
 ## Bibliografía
 
