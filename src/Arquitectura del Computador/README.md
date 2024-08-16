@@ -12,8 +12,8 @@ En este documento dejaré escrito todo el contenido de la materia, desde teoría
 ## Indice
 * [Información principal de la materia](#información-principal-de-la-materia)
 * [Bibliografía](#bibliografía)
-* [Teórico](Teórico/README.md)
-* [Práctico](#practico)
+* [Teórico](Teorico.md)
+* [Práctico](Práctico.md)
 * [Laboratorio](#laboratorio)
 
 ## Información principal de la materia
@@ -32,7 +32,7 @@ En este documento dejaré escrito todo el contenido de la materia, desde teoría
 <p align="left" style="font-size:15px;">Carga horaria: <strong style="font-size:15px; color:yellow;">8 horas semanales</strong></p>
 
 <p align="left" style="font-size:15px;"><li>Parciales:<ul>
-        <li>Primer Parcial: <strong style="font-size:15px; color:yellow;">Insertar Fecha</strong></li>
+        <li>Primer Parcial: <strong style="font-size:15px; color:yellow;">Viernes 20 de Septiembre</strong></li>
         <li>Segundo Parcial: <strong style="font-size:15px; color:yellow;">Insertar Fecha</strong></li>
         <li>Recuperatorio (Sirve para promocionar): <strong style="font-size:15px; color:yellow;">Insertar Fecha</strong></li>
         </ul>
