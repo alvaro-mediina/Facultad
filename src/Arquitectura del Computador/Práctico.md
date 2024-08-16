@@ -57,3 +57,7 @@ La función lógica se almacena en una tabla de verdad 16x1 (para las LUTs de 4 
 <p style="text-align: center;"><em>Compilación del circuito</em></p>
 
 
+
+
+## Behavioral SystemVerilog
+> Siempre un módulo por archivo y tener el nombre del módulo = al nombre del archivo.
