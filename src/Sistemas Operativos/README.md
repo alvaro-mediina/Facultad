@@ -11,9 +11,10 @@ En este documento dejaré escrito todo el contenido de la materia, desde teoría
 ## Indice
 * [Información principal de la materia](#información-principal-de-la-materia)
 * [Bibliografía](#bibliografía)
-* [Teórico](#teórico)
+* [Teórico](#Teórico.md)
 * [Práctico](#practico)
-* [Laboratorio](#laboratorio)
+* Laboratorios
+    * [Laboratorio 0](Laboratorio/Laboratorio%200/README.md)
 
 ## Información principal de la materia
 
