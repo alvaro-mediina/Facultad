@@ -140,6 +140,15 @@ He investigado que los archivos con extensión .sh son scripts de shell, es deci
 
 7) ¿Cómo ver la MAC address de nuestro equipo? Investiguen el comando ip. En el manual de grep van a encontrar la especificación de muchas operaciones, por ejemplo -o, -i, y muchas más. Algo muy utilizado son las expresiones regulares para realizar una búsqueda. En el manual de grep tienen un apartado donde explica su uso. Con esta información deberían poder construir una secuencia de comandos de shell para imprimir por consola la MAC address de su interfaz ethernet.
 
+#### ¿Qué es una MAC Address?
+La MAC Address (Media Access Control Address) es un identificador único asignado a la tarjeta de red de tu dispositivo. Es una dirección física que consta de 48 bits y suele representarse en formato hexadecimal (por ejemplo, 00:1A:2B:3C:4D:5E). Cada dispositivo de red, como una tarjeta Ethernet o Wi-Fi, tiene una MAC address única que es utilizada para la comunicación en redes locales.
+
+#### ¿Qué es la interfaz Ethernet?
+La interfaz Ethernet es el hardware que permite la conexión a una red local (LAN) mediante un cable Ethernet. Cada interfaz Ethernet tiene una MAC Address asociada, que se utiliza para identificar el dispositivo en la red.
+
+#### ¿Qué es el comando ip?
+El comando ip es una herramienta poderosa en Linux que se usa para mostrar y manipular las configuraciones de red en tu sistema. Puedes usarlo para ver información sobre interfaces de red, rutas, direcciones IP, y más.
+
 <br>
 
 8) Supongamos que bajaron una serie de televisión completa con subtítulos (de forma completamente legal, por supuesto). Sin embargo, los subtítulos tienen el sufijo _es en el nombre de cada archivo y para que puedan ser reproducidos en el televisor, que nunca fue demasiado smart, el archivo de subtítulos tiene que tener exactamente el mismo nombre que el archivo de video con la extensión srt. La serie tiene más de 100 capítulos, es imposible realizar los cambios uno a uno.
