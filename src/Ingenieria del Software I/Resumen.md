@@ -51,9 +51,11 @@ Una vez entragado el software, éste requiere mantenimiento.
 
 ### Desafíos de la Ingeniería del Software
 
-> Tratar de entender que el usuario/cliente quiere para crear el software; Satisfacer al cliente.
+La Ingeniería del software es la aplicación de un **enfoque sistemático**, disciplinado y cuantificable al desarrollo, operacioón y mantenimiento del software. Hacemos alusión a enfoque sistemático por la metodología y prácticas existentes para solucionar un problema dentro de un dominio determinado.
 
-> Elección del enfoque: Escala, Calidad, Productividad, Consistencia y Cambio.
+Tratar de entender que el usuario/cliente quiere para crear el software; Satisfacer al cliente.
+
+**Elección del enfoque: Escala, Calidad, Productividad, Consistencia y Cambio.**
 
 - **Escala:** Capacidad de adaptación y respuesta de un sistema con respecto al rendimiento del mismo a medida que aumentan o disminuyen de forma significativa el número de usuarios o requerimientos del mismo. Las dimensiones a considerar son: **Métodos de ingeniería y Administración del proyecto.**
 
@@ -75,7 +77,7 @@ Una vez entragado el software, éste requiere mantenimiento.
 
         - Portabilidad: Capacidad de ser...
 
-  Podemos deir que algo es bueno si: 1 defecto / KLOC
+  Podemos decir que algo es bueno si: 1 defecto / KLOC
 
 - **Cambio**:
     * Los cambios en las empresas/instituciones es lo habitual.
