@@ -16,6 +16,8 @@ Enjoy :D
     * [Desiciones de diseño](#desiciones-de-diseño)
     * [Un poco de historia](#un-poco-de-historia)
 - [Virtualización](#virtualizacion)
+    * [Dialogo](#dialogo)
+    * [Procesos](#procesos)
 
 # Introducción
 
@@ -162,6 +164,7 @@ Así, UNIX sigue vivo, más importante hoy que nunca. Los dioses de la computaci
 
 # Virtualización
 
+## Procesos
 
 
 
