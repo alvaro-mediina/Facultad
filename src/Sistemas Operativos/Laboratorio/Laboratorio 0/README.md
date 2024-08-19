@@ -46,6 +46,17 @@ He investigado que los archivos con extensión .sh son scripts de shell, es deci
 - Por último, debo darle **permisos de ejecución** al archivo con el comando `chmod 777 nombre_archivo.sh`
 - Luego para ejecutar el script debo escribir: `./nombre_archivo.sh`
 
+## Task List
+- [X] Investigar los comandos y conectores.
+- [X] Ejercicio 1
+- [X] Ejercicio 2
+- [X] Ejercicio 3
+- [X] Ejercicio 4
+- [X] Ejercicio 5
+- [X] Ejercicio 6
+- [X] Ejercicio 7
+- [X] Ejercicio 8
+
 ## Ejercicios
 1) ¿Qué modelo de procesador tiene tu equipo?
 
@@ -166,6 +177,8 @@ El comando ip es una herramienta poderosa en Linux que se usa para mostrar y man
     1. Recortar un video. Pueden usar SimpleScreenRecorder (linux) para grabar un pequeño video de prueba. Luego, usen ffmpeg para sacarle los primeros y los últimos segundos en donde se ve el la pantalla como inician y cortan la grabación.
 
     2. Mezclar streams de audio. Graben un pequeño audio de voz, y descarguen de internet alguna pista de sonido que quieran poner de fondo. Usen ffmpeg para superponer las dos pistas. Tomen como ejemplo los podcasts de Nico!
+
+
 
 
 
