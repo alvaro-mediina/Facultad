@@ -160,7 +160,7 @@ Con la llegada de la era de internet, la mayoría de las empresas (como Google, 
 
 Así, UNIX sigue vivo, más importante hoy que nunca. Los dioses de la computación, si crees en ellos, deberían ser agradecidos por este maravilloso resultado.
 
-
+# Virtualización
 
 
 
