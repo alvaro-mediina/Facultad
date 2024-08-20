@@ -17,6 +17,7 @@ En este archivo se encontrará un resumen para poder tener a mano los conceptos 
 
 - **[Chapter 3: Software Requirements Analysis and Specification](#chapter-3-software-requirements-análysis-and-specification)**
 
+- **[Chapter 4: Arquitectura de Software](#chapter-4-arquitectura-de-software)**
 
 
 # Chapter 1: Introduction
@@ -309,9 +310,9 @@ recomenzar.
 
 ![alt text](imgs/image-2.png)
 
-> Cada clase está conformada por nombre, atributos y servicios.
+- Cada clase está conformada por nombre, atributos y servicios.
 
-> Tener en cuenta los símbolos, por ejemplo el puntito de Sale que entre a la clase proveniente de _Drug-Store_ hace referencia a la relación _uno a muchos_. A su vez como lo hace el rombito que habla de herencia.
+**Tener en cuenta** los símbolos, por ejemplo el puntito de Sale que entre a la clase proveniente de _Drug-Store_ hace referencia a la relación _uno a muchos_. A su vez como lo hace el rombito que habla de herencia.
 
 ## Prototipado
 
@@ -323,8 +324,8 @@ recomenzar.
 - Los modelados (OO o DFD) no son SRS.
 
 **Características de una SRS**:
-- Completa
-- Correta
+- Completa: Especificaciones requeridas por el cliente. 
+- Correta: Se deben encontrar todas las peticiones del cliente.
 - No ambigua
 - Consistente
 - Verificable
@@ -403,6 +404,7 @@ Conceptos básicos:
 - No utilizar verbos conjugados estrambóticamente.
 - Cuidado con los adjetivos calificativos.
 - Para escribir, utilizar reglas simples en las expresiones.
+- Ser los más precisos posible en los nombres.
 
 ## Validación de los requerimientos
 Debido a la naturaleza de esta etapa, hay muchas posibilidades de malentendidos, implicando que muchos errores son posibles.
@@ -430,7 +432,9 @@ Para poder estimar costos y tiempos y planear el proyecto se necesita "medir" el
 
 ### Punto función
 
-> Estimación similar a las líneas de código.
+Estimación similar a las líneas de código. Se realiza después de la SRS pero se mantiene durante todo el proceso.
+
+¿Para qué quiero el punto función?
 
 - Es una estimacióon similar a la métrica LOC.
 - Se determina sólo con la SRS.
@@ -445,7 +449,11 @@ Tipos de funciones:
 
  > Básicamente agarro la SRS y empiezo a explicar el uso las funciones.
 
+
  ![alt text](imgs/image-3.png)
+
+ > De esta tabla necesito saber las partes de la tabla.
+
  
  Para hacer un punto de función debo conocer la fórmula de la UFP:
  
@@ -454,6 +462,8 @@ Tipos de funciones:
  $
 
 Donde i refleja las filas y j las columnas. $w_{ij}$ es el peso de la función y $C_{ij}$ es la cantidad de funciones.
+
+> Acordarse de la utilización del punto función, recordar que es para saber 
 
 ### Metricas de calidad
 
@@ -474,6 +484,197 @@ Donde i refleja las filas y j las columnas. $w_{ij}$ es el peso de la función y
     4. The fundamental approach of software engineering to achieve the objectives is to separate the development process from the products. Software engineering focuses on process since the quality of products developed and the productivity achieved are heavily influenced by the process used. To meet the software engineering challenges, this development process is a phased process. Another key approach used in Software Engineering for achieving high Q&P is to manage the process effectively and proactively using metrics.
 
 
+# Chapter 4: Arquitectura de software
+
+Ante la aparición de un problema, siempre intentar dividirlo y resolverlo por partes.
+
+Todo sistema complejo se componte de subsistemas que interactúan.
+
+En esta etapa ya estamos en la fase de planificación para resolver el problema.
+
+**Definicion**: La arquitectura de SW de un sistema es la estructura del sistema que comprende los elementos del SW, las **propiedades externamente visibles** de tales elementos, y la relación entre ellas.
+
+- Para la arquitectura no son importantes los detalles de cómo se aseguran dichas propiedades.
+
+- Por cada elemento sólo interesan las propiedades externas necesarias para especificar las relaciones.
+
+- Lo típico es no realizar solo una arquitectura.
+
+- La arquitectura es el diseño de más alto nivel.
+
+- A este nivel se hacen las elecciones de tecnología, productos a utilizar, servidores, etc.
+
+- No es posible diseñar los detalles del sistema y luego incorporar elecciones.
+
+- La arquitectura debe ser creada de manera que se adapte a estas elecciones (Hay que ver cuando conviene hacerlo).
+
+## El rol de la arquitectura de software
+La arquitectura es un diseño del SW que da una visión de muy alto nivel de las partes del sistema y de las relaciones entre ellos que conforman el todo.
+ - Divide al sistema en partes lógicas tal que cada una pueda ser **comprendida**.
+ - Y describe las relaciones entre ellas, lo que puede ser un proceso complejo.
+
+### ¿Por qué?
+Al final podremos mostrar una estructura de alto nivel del sistema, ofreciendo una perspectiva de la complejidad del problema a resolver.
+
+**Comprensión y comunicación**:
+ - Al mostrar la estructura de alto nivel del sistema ocultando la complejodad de sus partes, la descripción arquitecónica facilita la comunicación.
+
+**Reuso**: Es considerado una buena práctica por el ahorro, porque sabemos "en teoría" que funciona.
+
+**Construcción y evolución**:
+ - Si tenemos una buena arquitectura los cambios serán facilitados.
+ - Ayuda a asignar equipos de trabajo.
+
+**Análisis**: En esta etapa también se realiza un análisis.
+
+## Vistas de la arquitectura
+
+Consisten de elementos y relevaciones entre ellos, y describen una estructura.
+
+- No hay una única arquitectura del sistema.
+- Hau distintas vistas de un sistema de software (paralelismo con ingeniería civil).
+- Una vista consiste de elementos y relaciones entre ellos, y describe una estructura.
+- Los elementos de una vista dependen de lo que la vista quiera destacar.
+- Distintas vistas exponen distintas propiedades.
+- La mayoría pertenece a alguno de estos tres tipos de vistas: **Módulo, Componentes y conectores y Asignacion de recursos.**
+
+### Vista de modulos
+- Un sistema es una colección de unidades de código (no presentan entidades en ejecución, i.e los elementos son módulos).
+- Su relación está basada en el código. Ej: "Parte de ", "Usa a" o "Depende", llamadas generalización o especialización, etc.
+
+### Vista de componentes y conectores
+- Elementos principales: componentes y conectores :v
+- **Componentes**: Son elementos computacionales o de almacenamiento de datos.
+- **Conectores**: Son mecanismos de interacción entre los componentes.
+
+<br>
+
+- Una vista C&C define las componentes y cómo se conectan entre ellas a través de conectores.
+- La vista C&C describe una estructura en ejecución del sistema: qué componentes existen y cómo interactúan entre ellos en tiempo de ejecución.
+
+#### Componentes
+- Son unidades de cómputo o de almacenamiento de datos.
+- Cada componente tiene un nombre que representa su rol y le provee una identidad.
+- Cada componente tiene un tipo representados con distintos símbolos.
+- Las componentes utilizan interfaces o puertos para comunicarse con otras componentes.
+
+![alt text](image.png)
+
+Tener en cuenta que existe un estándar para estos símbolos.
+
+#### Conectores
+- Son mecanismos de interacción complejos.
+- Describen el medio en el cual la intearcción ente componentes toma lugar.
+- Pueden no ser unidireccionales.
+- Tiene un nombre para identificarlos y un tipo que describe su comportamiento.
+
+![alt text](image-1.png)
+
+#### Ejemplo
+
+Se propone una arquitectura de 3 niveles (capas):
+- Los conectores entre ellos también tienen distintos tipos.
+- Tiene como componentes a un cliente, a un servidor, y a una base de datos.
+
+- A nivel de arquitectura se omiten muchos detalles.
+
+**Extensión I**(En la arquitectura): Esta arquitectura no provee seguridad: la encuesta podría ser realizada por cualquiera. Sin embargo sólo los alumnos deberían responderla y a lo sumo una vez. Para identificar a los alumnos y verificar que sólo envían una
+encuesta se requiere un servidor de autenticación.
+Se requerirá el uso de cookies, con el servidor construido
+apropiadamente (usar http con cookies en el conector entre
+servidor y servidor de autenticación.)
+
+**Extensión II:**Resultó que la base de datos está caída con más frecuencia de la esperada. Además, es aceptable que los estudiantes reciban resultados parciales un poco desactualizados (una desactualización de 5 encuestados es tolerable). Para incrementar la disponibilidad del sistema se decidió agregar una caché.
+
+![alt text](image-2.png)
+
+## Estilos arquitectónicos para la vista de C&C: Tubos y Filtros (Pipe and Filter)
+
+- Para empezar son 6 familias :D.
+- Adecuado para sistemas que fundamentalmente realizan transformaciones de datos.
+
+- Tiene un solo tipo de componente y conetor, filtro y tubo.
+
+**Restricciones 1**:
+ - Un filtro es una entidad independiente y asíncrona.
+ - Un filtro no necesita saber la entidad de los filtros que envían o reciben los datos.
+ - Un tubo es un canal unidireccional que transporta un flujo de datos de un filtro a otro.
+ - Un tubo sólo conecta 2 componentes.
+ - Los filtros deben hacer "buffering" y sincronización para asegurar el correcto funcionamiento entre el productor y consumidor.
+
+### Estilo de datos compartidos
+- Dos tipos de componentes: repositorio de datos y usuario de datos.
+- Repositorio de datos: provee almacenamiento permanentemente confiable.
+- **Usuarios de datos**: acceden a los datos en el repositorio, realizan cálculos, y ponen los resultados otra vez en el repositorio.
+- La comunicación entre los usuarios de los datos sólo se hace a través del repositorio.
+
+<br>
+
+Hay dos variantes principales:
+ - Estilo pizarra: Cuando se agregan/modifican datos en el repositorio, se informa a todos los usuarios.
+ - Estilo repositorio: Los usuarios leen y escriben en el repositorio, pero no se informan entre ellos.
+
+Ej: Guaraní es un repositorio (dato compartido)
+
+#### Estilo cliente-servidor
+- Dos tipos de componentes: cliente y servidor :v
+- Los clientes sólo se comunican con el servidor, pero no con otros clientes.
+- La comunicación siempre es iniciada por el cliente quien le envía una solicitud al servidor y espera una respuesta de éste => la comunicación es usualmente sincrónica.
+
+#### Otros estilos
+- Estilo publish-subscribe.
+- Estilo peer-to-peer.
+- Estilo de procesos que se comunican.
+
+## Documentación del diseño arquitectónico
+### Organización
+- Contexto del sistema y la arquitectura.
+- Descripción de las vistas de la arquitectura.
+   - Presentación principal de la vista.
+   - Catálogo de elementos.
+   - Fundamento de la arquitectura.
+   - Comportamiento.
+   - Otra información.
+- Documentación transversal a las vistas: relación entre las vistas.
+- El documento tiene parte gráfica y textual.
+
+## Arquitectura y diseño
+Tanto la arquitetura como el diseño dividen al sistema en partes y dicen cómo estas se organizan.
+
+- La arquitectura **es** un diseño.
+
+El rol de la arquitectura durante el resto del proyecto es:
+ - La arquitectura debería imponer restricciones.
+ - Debería ayudar a la implementación.
+ - Algunos sólo la usan para comprender el sistema.
+
+## Evaluación de las arquitecturas
+La arquitectura tiene impacto sobre los atributos no funcionales tales como: desempeño, confiabilidad, portabilidad, etc.
+
+Una posibilidad -> técnicas formales (redes de colas, model checkers, lenguajes de especificación, etc)
+Otra posibilidad -> metodologías rigurosas.
+
+### El método de análisis ATAM (Architecture Tradeoff Analysis Method)
+
+Evalúa las consecuencias de las decisiones arquitectónicas en relación a determinados atributos de calidad.
+- Recolectar escenarios.
+- Recolectar requerimientos y/o restricciones.
+    - Lo que se espera el sistema
+    - Especificación de los niveles deseados para los atributos de interés.
+- Descripción de las vistas arquitectónicas.
+- Análisis específicos a cada atributo: análisis de vista para cada atributo de interés.
+- Identificar puntos sensitivos y de compromisos:
+    - Puntos sensitivos: hallar cual es el impacto que tiene un elementro sobre un atributo de calidad.
+    - Análisis de compromiso: Elementos que son puntos de sensibilidad para varios atributos.
+
+## Arquitectura del software
+- Encapsula.
+- Scoping.
+
+### Vista de asignación de recursos
+
+
+
 # Glosario
 - KLOC: Líneas de Código en K. (Medida)
 - LOC: Líneas de Código (Medida)
@@ -483,3 +684,4 @@ Donde i refleja las filas y j las columnas. $w_{ij}$ es el peso de la función y
 - C&P: Calidad y Productividad
 - SRS: Software Requirement Specification
 - Brainstorming: interactuar con el cliente para establecer las propiedades deseadas.
+- Scoping: Que ciertos problemas sean alcanzados por ciertos pedazos del código
