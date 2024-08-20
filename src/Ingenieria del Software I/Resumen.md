@@ -7,20 +7,21 @@ En este archivo se encontrará un resumen para poder tener a mano los conceptos 
 <p align="center">Recomendación: Leer los capítulos antes de ir al teórico.
 </p>
 
----
 
-## Índice
+
+# Índice
 - **[Chapter 1: Introduction](#chapter-1-introduction)**
     - [The Problem Domain](#the-problem-domain)
     - [The Software Engineering Challenges](#the-software-engineering-challenges)
     - [Summary](#summary)
 
-- **[Chapter 3: Software Requirements Analysis and Specification](#chapter-3-software-requirements-analysis-and-specification)**
+- **[Chapter 3: Software Requirements Analysis and Specification](#chapter-3-software-requirements-análysis-and-specification)**
 
 
-## Chapter 1: Introduction
 
-### The Problem Domain
+# Chapter 1: Introduction
+
+## The Problem Domain
 
 Software (Según la IEEE): Colección de programas, procedimientos, y la documentación y datos asociados que determinan la operación de un sistema de computación.
 
@@ -49,7 +50,7 @@ Una vez entragado el software, éste requiere mantenimiento.
 
 <p align="center"><strong>El mantenimiento puede costar más que el desarrollo del software</strong></p>
 
-### Desafíos de la Ingeniería del Software
+## Desafíos de la Ingeniería del Software
 
 La Ingeniería del software es la aplicación de un **enfoque sistemático**, disciplinado y cuantificable al desarrollo, operacioón y mantenimiento del software. Hacemos alusión a enfoque sistemático por la metodología y prácticas existentes para solucionar un problema dentro de un dominio determinado.
 
@@ -90,7 +91,7 @@ Tratar de entender que el usuario/cliente quiere para crear el software; Satisfa
     * Un **Objetivo** de la IS es la sucesiva producción de sistemas de alta calidad y productividad.
     * La consistencia permite predecir el resultado del proyecto con certeza razonable. Sin consistencia sería difícil estimar costos.
 
-### Enfoque de la Ingeniería del Software
+## Enfoque de la Ingeniería del Software
 
  Pudimos entonces comprender el dominio del problema y los factores que motivan la IS: Consistentemente desarrollar software de alta calidad y con alta productividad (C&P o en inglés Q&P) para problemas de gran escala que se que se adaptan a los cambios. 
 
@@ -106,7 +107,7 @@ Tratar de entender que el usuario/cliente quiere para crear el software; Satisfa
 
 
 
-#### El proceso de desarrollo en fases
+### El proceso de desarrollo en fases
 - El proceso de desarrollo consiste de varias fases:
   * Análisis de requisitos y especificación.
   * Arquitectura. (Hay pocos y es lo más pago)
@@ -124,7 +125,7 @@ Tratar de entender que el usuario/cliente quiere para crear el software; Satisfa
 
 > El proceso en fases es central en el enfoque de la IS para solucionar la crisis del software.
 
-#### Administración del proceso
+### Administración del proceso
 Se utilizará mucho la palabra `proceso`. 
 
 El proceso de **desarrollo** no establece cómo asignar los recursos a las distintas tareas, ni cómo organizarlas temporalmente, ni cómo asegurar que cada fase se desarolló apropiadamente, etc. 
@@ -135,89 +136,176 @@ Son importantes para poder planear y administrar las métricas y medidas.
 
 
 
-### Chapter 3: Análisis y especificación de los requisitos del software
+# Chapter 3: Software Requirements Análysis and Specification
 
-#### Introducción
+## Introducción
 
-> A medida que los sistemas se volvían más complejos, se hizo evidente que los objetivos de todo el sistema no podían comprenderse fácilmente. De ahí surgió la necesidad de un análisis de requisitos más riguroso. Ahora, para los grandes sistemas de software, el análisis de requirements es quizás la actividad más difícil e intratable; también es muy propensa a errores. Muchos creen que la disciplina de la ingeniería de software es más débil en esta área crítica.
+A medida que los sistemas se volvían más complejos, se hizo evidente que los objetivos de todo el sistema no podían comprenderse fácilmente. De ahí surgió la necesidad de un análisis de requisitos más riguroso. Ahora, para los grandes sistemas de software, el análisis de requirements es quizás la actividad más difícil e intratable; también es muy propensa a errores. Muchos creen que la disciplina de la ingeniería de software es más débil en esta área crítica.
 
 
->  La **fase de requirements** traduce las ideas en las mentes de los clientes (la entrada) en un documento formal (la salida de la fase de requirements). Así, la salida de esta fase es un conjunto de requirements especificados con precisión, que, con suerte, serán completos y consistentes, mientras que la entrada no tiene ninguna de estas propiedades. Claramente, el proceso de especificación de requirements no puede ser totalmente formal; cualquier proceso de traducción formal que produzca una salida formal debe tener una entrada precisa y sin ambigüedades.
+La **fase de requirements** traduce las ideas en las mentes de los clientes (la entrada) en un documento formal (la salida de la fase de requirements). Así, la salida de esta fase es un conjunto de requirements especificados con precisión, que, con suerte, serán completos y consistentes, mientras que la entrada no tiene ninguna de estas propiedades. Claramente, el proceso de especificación de requirements no puede ser totalmente formal; cualquier proceso de traducción formal que produzca una salida formal debe tener una entrada precisa y sin ambigüedades.
 
 > El analista de **requirements** tiene que identificar los requisitos hablando con estas personas y comprendiendo sus necesidades.
 
-    Objetivo del Capítulo: Se discutirá qué son los requirements, por qué la especificación de requirements es importante, cómo se analizan y especifican los requirements, cómo se validan los requirements, y algunas métricas que pueden aplicarse a los requirements.
+**Objetivo del Capítulo:** Se discutirá qué son los requirements, por qué la especificación de requirements es importante, cómo se analizan y especifican los requirements, cómo se validan los requirements, y algunas métricas que pueden aplicarse a los requirements.
 
 
-#### Software Requirements
+## Software Requirements
 
-> Diferencia entre **cliente** y **usuario**: El cliente pone el dinero para el producto y el usuario lo utiliza. El mismo cliente puede ser el usuario.
+* Diferencia entre **cliente** y **usuario**: El cliente pone el dinero para el producto y el usuario lo utiliza. El mismo cliente puede ser el usuario.
 
 Definición de la IEEE a **requirement**:
 - Una condición o capacidad necesaria para que un usuario resuelva un problema o alcance un objetivo.
 - Una condición o capacidad que debe ser cumplida o poseída por un sistema ... para satisfacer un contrato, estándar, especificación u otro documento impuesto formalmente.
 
-> Es importante notar que en software requirements estamos tratando con los requisitos del sistema propuesto, es decir, las capacidades que el sistema, que aún está por desarrollarse, debería tener. Es porque estamos tratando de especificar un sistema que no existe que el problema de los requirements se vuelve complicado.
+Es importante notar que en **software requirements** estamos tratando con los requisitos del sistema propuesto, es decir, las capacidades que el sistema, que aún está por desarrollarse, debería tener. Es porque estamos tratando de especificar un sistema que no existe que el problema de los requirements se vuelve complicado.
 
-> El objetivo de la actividad de requirements es producir la Software Requirements Specification (SRS), que describe lo que el software propuesto debería hacer sin describir cómo lo hará. Es un **contrato** con el cliente.
+El **objetivo** de la actividad de requirements es producir la Software Requirements Specification (SRS), que describe lo que el software propuesto debería hacer sin describir cómo lo hará. Es un **contrato** con el cliente.
 
-> Producir el SRS es más fácil de decir que de hacer. Una limitación básica para esto es que las necesidades del usuario siguen cambiando a medida que cambia el entorno en el que el sistema debe funcionar con el tiempo.
+Producir el SRS es más fácil de decir que de hacer. Una limitación básica para esto es que las necesidades del usuario siguen cambiando a medida que cambia el entorno en el que el sistema debe funcionar con el tiempo.
 
-#### Need for SRS
+## Need for SRS
 
-> Es muy importante un SRS, tener muy en cuenta a la hora de desarrollar.
+Es muy importante un SRS, tener muy en cuenta a la hora de desarrollar.
 
-> Se encuentran muchos errores en los sistemas a menudo, todos estos suelen ser por falta de un buen SRS.
+Se encuentran muchos errores en los sistemas a menudo, todos estos suelen ser por falta de un buen SRS.
 
->De alguna manera, los **requirements** del sistema que satisfarán las necesidades de los clientes y las preocupaciones de los usuarios deben ser comunicados al desarrollador. El problema es que el cliente generalmente no entiende el software ni el proceso de desarrollo de software, y el desarrollador a menudo no comprende el problema del cliente ni el área de aplicación. Esto causa una brecha de comunicación entre las partes involucradas en el proyecto de desarrollo. Un propósito básico de la software requirements specification es cerrar esta brecha de comunicación.
+De alguna manera, los **requirements** del sistema que satisfacerán las necesidades de los clientes y las preocupaciones de los usuarios deben ser comunicados al desarrollador. El problema es que el cliente generalmente no entiende el software ni el proceso de desarrollo de software, y el desarrollador a menudo no comprende el problema del cliente ni el área de aplicación. Esto causa una brecha de comunicación entre las partes involucradas en el proyecto de desarrollo. Un **propósito básico** de la software requirements specification es cerrar esta brecha de comunicación.
 
-    Ventaja: Un SRS establece la base para un acuerdo entre el cliente y el proveedor sobre lo que hará el producto de software.
+* **Ventajas:** 
+  - Un SRS establece la base para un acuerdo entre el cliente y el proveedor sobre lo que hará el producto de software.
 
-> Un SRS proporciona una referencia para la validación del producto final (Con el cliente; Necesario para la satisfacción del mismo).
+  - Un SRS proporciona una referencia para la validación del producto final (Con el cliente; Necesario para la satisfacción del mismo).
 
-> Es decir, el SRS ayuda al cliente a determinar si el software cumple con los requirements. Sin un SRS adecuado, no hay manera de que un cliente pueda determinar si el software que se está entregando es lo que se solicitó, y no hay manera de que el desarrollador pueda convencer al cliente de que se han cumplido todos los requirements.
+Es decir, el SRS ayuda al cliente a determinar si el software cumple con los requirements. Sin un SRS adecuado, no hay manera de que un cliente pueda determinar si el software que se está entregando es lo que se solicitó, y no hay manera de que el desarrollador pueda convencer al cliente de que se han cumplido todos los requirements.
 
-> Se detectó que la mayoría de los errores en los sistemas de software se deben a la falta de un buen SRS. Por lo tanto, la especificación de requirements es una de las actividades más críticas en el desarrollo de software.
+<br>
 
-> Un SRS de alta calidad es un requisito previo para un software de alta calidad.
+Se detectó que la mayoría de los errores en los sistemas de software se deben a la falta de un buen SRS. Por lo tanto, la especificación de requirements es una de las actividades más críticas en el desarrollo de software. 
 
-> Un SRS de alta calidad reduce el costo de desarrollo y mantenimiento del software.
+ - Un SRS de alta calidad es un requisito previo para un software de alta calidad.
 
-> La calidad del SRS impacta la satisfacción del cliente (y del desarrollador), la validación del sistema, la calidad del software final y el costo de desarrollo del software. El papel crítico que juega el SRS en un proyecto de desarrollo de software debería ser evidente a partir de estos puntos.
+ - Un SRS de alta calidad reduce el costo de desarrollo y mantenimiento del software.
 
-#### Requirement Process
+La calidad del SRS impacta la satisfacción del cliente (y del desarrollador), la validación del sistema, la calidad del software final y el costo de desarrollo del software. El papel crítico que juega el SRS en un proyecto de desarrollo de software debería ser evidente a partir de estos puntos.
 
-> Análisis: Entender el problema y los requisitos del sistema.
+## Requirement Process
 
-> Especificar: Plasmar toda la información del análisis en la SRS.
+Es una secuencia de pasos que se necesita realizar para convertir las necesidades del usuario en la SRS.
 
-> El proceso no es lineal; es iterativo y en paralelo.
+**Actividades básicas:** 
+ - **Análisis**: Entender el problema y los requisitos del sistema.
 
-> Existe superposición entre las fases: algunas partes pueden estar siendo especificadas mientras otras están aún bajo análisis.
+ - **Especificar**: Plasmar toda la información del análisis en la SRS.
 
-> La especificación misma puede ayudar al análisis.
+ - **Validación**: 
 
-> La validación puede mostrar brechas que conducirán a más análisis y más especificación.
+**Características:**
 
-    Objetivo en general: Dividir y conquistar cada una de las fases.
+ - El proceso no es lineal; es iterativo y en paralelo.
 
+ - Existe superposición entre las fases: algunas partes pueden estar siendo especificadas mientras otras están aún bajo análisis.
 
-### Análisis del Problema
-    Objetivo: Lograr una buena comprensión de las necesidades, requerimientos, y restricciones del software.
+ - La especificación misma puede ayudar al análisis.
+
+ - La validación puede mostrar brechas que conducirán a más análisis y más especificación.
+
+**Objetivo en general**: Dividir y conquistar cada una de las fases.
+
+**Recomendación**: Durante el análisis utilizar técnicas como diagramas de flujo de datos, digrama de objetos, entre otros.
+
+La transición del análisis a la especificación es complicada:
+ * La especificación se enfoca en el comportamiento externo.
+ * **Objetivo del análisis**: comprender la estructura del problema y su dominio (componentes, entrada y salida)
+ * Se recomienda información extra para la especificación, ya siendo de más o distinta.
+
+**Diferencias**:
+ - Los métodos de análisis son similares a los de diseño, pero con objetivos y alcances
+distintos.
+ - El análisis trata con el dominio del problema mientras que el diseño trata con el dominio de la solución.
+
+## Análisis del Problema
+
+**Objetivo**: Lograr una buena comprensión de las necesidades, requerimientos, y restricciones del software.
 
 El principio básico del análisis es **particionar el problema**. Luego comprender cada subproblema y relación entre ellos respecto a las funciones (análisis estructural), objetos (análisis OO), eventos del sistema (particionado de eventos).
 
-> Modelar el flujo de datos es un recurso ampliamente utilizado enfocándose en las funciones realizadas en  el sistema. no en los requisitos no funcionales. Para el modelado se utilizan diagramas de flujo de datos (DFD).
+### Enfoque informal
+
+El analista tendrá una serie de reuniones con los clientes y los usuarios finales. 
+ - En las primeras reuniones, los clientes y usuarios finales explicarán al analista sobre su trabajo, su entorno, y sus necesidades tal como las perciben. 
+ - Se pueden entregar documentos que describen el trabajo o la organización, junto con salidas de los métodos existentes para realizar las tareas. 
+
+En estas primeras reuniones, el analista es básicamente un oyente, absorbiendo la información proporcionada. Una vez que el analista comprende el sistema hasta cierto punto, utiliza las siguientes reuniones para aclarar las partes que no entiende. Puede documentar la información de alguna manera (incluso puede construir un modelo si lo desea), y puede realizar sesiones de brainstorming o reflexionar sobre lo que debería hacer el sistema.
+
+<br>
+
+### Modelado de flujo de datos
+
+Modelar el flujo de datos es un recurso ampliamente utilizado enfocándose en las funciones realizadas en  el sistema, no en los requisitos no funcionales. Para el modelado se utilizan diagramas de flujo de datos (DFD).
 
 La idea de analizar el problema es intentar **NO** resolver el problema, sino entenderlo y para ello se lleva un estudio completo.
 
+<br>
+
+#### Modelado de flujo de datos: DFD
+
+Un DFD es una representación gráfica para representar un algoritmo/proceso, donde se representa el flujo de datos a través del sistema.
+
+**Objetivo**: Es capturar las transformaciones que ocurren dentro de un sistema desde los datos de entrada hasta que finalmente se producen los datos de salida.
+
+**Componentes**:
+ - **Proceso/transformación**: Agente que realiza la transformación de datos de un estado a otro. Representados por burbujas, generalmente se utilizan verbos.
+ - **Fuente o sumidero**: Representado por un rectángulo y es generador/consumidor de datos. Suele estar fuera del sistema principal de estudio.
+ - **Flujo de datos**: Representados por flechas nombradas que entran o salen de las burbujas, generalmente se utilizan sustantivos.
+ - **Archivos externos**: Representados como una línea recta etiquetada (almacén de datos).
+ - **Múltiples flujos**:
+      - '*' : AND.
+      - '+' : OR.
+
+![alt text](imgs/image-4.png)
+
+
+**Recomendaciones**:
+ * Tener en cuenta los símbolos, la forma en la que un DFD se arma como los sustantivos que llevan los globitos, verbos, entre otros.
+
+ * Tener **MUY** en cuenta el método funcional para hacer análisis de requerimientos (DFD) ya que tenemos 2, uno es ese y el otro es el modelado orientado a objetos.
+
+ * Un DFD no es un diagrama de flujo. Un DFD representa el flujo de datos, mientras que un diagrama de flujo muestra el flujo de control. Un DFD no representa información procedimental. Por lo tanto, al dibujar un DFD, no se debe involucrar en detalles procedimentales y se debe evitar conscientemente el pensamiento procedimental. Por ejemplo, las consideraciones de bucles y decisiones deben ser ignoradas.
+
+ * Todos los procesos y flechas deben contener nombre.
+ * Los procesos deben representar transformadores.
+ * Las flechas deben representar algunos datos.
+
 ![alt text](imgs/image.png)
- 
-> Tener en cuenta los símbolos, la forma en la que un DFD se arma como los sustantivos que llevan los globitos, verbos, entre otros.
 
-> Tener **MUY** en cuenta el método funcional para hacer análisis de requerimientos (DFD) ya que tenemos 2, uno es ese y el otro es el modelado orientado a objetos.
 
-#### Modelado orientado a Objetos
+**Pasos para construir un DFD**:
+   - Comenzar identificando las principales entradas y salidas, ignorando al principio las entradas y salidas menores (como mensajes de error).
+   - Comenzando desde las entradas, trabajar hacia las salidas, identificando las principales transformaciones en el camino (Una alternativa es trabajar desde las salidas hacia las entradas.)
+   - Avanzar identificando los transformadores de más alto nivel para capturar la transformación completa.
+   - Cuando los transformadores de alto nivel están definidos, refinar cada uno con transformaciones más
+detalladas.
+   - No mostrar nunca lógica de control; si se comienza a pensar en término de loops/condiciones: parar y
+recomenzar.
+   - Etiquetar cada flecha y burbuja. Identificar cuidadosamente las entradas y salidas de cada transformador.
+   - Hacer uso de * y +.
+   - Intentar dibujar grafos de flujo de datos alternativos antes de definirse por uno
+
+**Consejos para DFD**: Realizar un DFD en niveles.
+ - El DFD de un sistema puede resultar muy grande, se debe organizar jerárquicamente.
+ - Comenzar con un DFD de nivel superior abstracto conteniendo pocas burbujas.
+ - Luego dibujar un DFD por cada burbuja.
+ - Al "explotar" una burbuja, preservar la E/S original con el fin de preservar consistencia.
+ - Para obtener el DFD en niveles se realiza un proceso de refinamiento top-down. Esto permite modelar sistemas grandes y complejos.
+
+<br>
+
+#### Modelado de flujo de datos: Diccionario de datos
+
+
+
+## Modelado orientado a Objetos
 
 ![alt text](imgs/image-2.png)
 
@@ -225,9 +313,9 @@ La idea de analizar el problema es intentar **NO** resolver el problema, sino en
 
 > Tener en cuenta los símbolos, por ejemplo el puntito de Sale que entre a la clase proveniente de _Drug-Store_ hace referencia a la relación _uno a muchos_. A su vez como lo hace el rombito que habla de herencia.
 
-#### Prototipado
+## Prototipado
 
-#### Especificación de los requerimientos
+## Especificación de los requerimientos
 - Se supone que en cuanto mejor entiendamos el problema y los requerimientos, mejor será la especificación y la resolución del problema.
 
 - La salida final de esta primera etapa es la SRS.
@@ -244,23 +332,23 @@ La idea de analizar el problema es intentar **NO** resolver el problema, sino en
 - Modificable: 
 - Ordenada en aspectos de importancia y estabilidad
 
-#### Componentes de una SRS
+## Componentes de una SRS
 Una SRS debe tener lineamientos sobre qué se debe especificar en una STS ayudará a conseguir completitud.
 
 - Requerimientos de desempeño: Estáticos y Dinámicos.
 - Restricciones de diseño: Ajustarse a estándares y compatibilidad con otros sistemas, limitaciones de hardware y otros recursos.
 - Requerimientos de confiabilidad: tolerancia a falla, respaldo y seguridad.
 
-#### Lenguajes de especificación
+## Lenguajes de especificación
  - Los lenguajes de especificación deben facilitar escribir SRS con las características deseadas, modificabilidad, no ambigüedad, etc.
 
  - A la vez deben ser fáciles de aprender.
  - Los lenguajes formales son precisos y carecen de ambigüedades pero no son muy fáciles de aprender.
 
-#### Alcance
+## Alcance
 Preguntas que se van a contestar en el TH.
 
-#### Estructura de un documento de requerimientos
+## Estructura de un documento de requerimientos
 Según la IEEE hay ciertos requerimentos:
 - Introducción
     * Propósito
@@ -272,7 +360,7 @@ Según la IEEE hay ciertos requerimentos:
 - Requerimientos específicos
 - Entre otros...
 
-#### Especificación funcional con casos de uso
+## Especificación funcional con casos de uso
 Conceptos básicos:
  - **Actor:** Una persona o sistema que interactúa con el sistema propuesto para alcanzar un objetivo. Por ejemplo, el usuario de un cajero automático.
     * **Actor primario:** EL actor principal que inicia el caso de uso. El caso de uso debe satisfacer su objetivo (AP es el interesado). La ejecucion real puede ser realizada por un sistema u otra persona en representación del actor primario.
@@ -311,12 +399,12 @@ Conceptos básicos:
         * Varios compradores _efectúan ofertas_
         * En la fecha de cierre se _completa la subasta_ del ítem.
 
-#### Elaboración de los casos de uso - Niveles de abstracción
+### Elaboración de los casos de uso - Niveles de abstracción
 - No utilizar verbos conjugados estrambóticamente.
 - Cuidado con los adjetivos calificativos.
 - Para escribir, utilizar reglas simples en las expresiones.
 
-### Validación de los requerimientos
+## Validación de los requerimientos
 Debido a la naturaleza de esta etapa, hay muchas posibilidades de malentendidos, implicando que muchos errores son posibles.
  - Es caro corregir los defectos de requerimientos más tarde.
  - Se deben intentar corregir en esta etapa.
@@ -331,7 +419,7 @@ Debido a la naturaleza de esta etapa, hay muchas posibilidades de malentendidos,
 Además, existen herramientas para el modelado y análisis de especificaciones. 
 - Se escriben en lenguajes de especificación formal.
 
-### Métricas
+## Métricas
 
 > Poner un valor para luego compararlo con nuevos valores para así **analizar errores** y **mejoras**. 
 
@@ -340,7 +428,7 @@ Para poder estimar costos y tiempos y planear el proyecto se necesita "medir" el
  - El esfuerzo del proyecto depende de muchos factores.
  - El **tamaño** es el principal factor, validando por muchos experimentos y datos del análisis.
 
-#### Punto función
+### Punto función
 
 > Estimación similar a las líneas de código.
 
@@ -367,14 +455,14 @@ Tipos de funciones:
 
 Donde i refleja las filas y j las columnas. $w_{ij}$ es el peso de la función y $C_{ij}$ es la cantidad de funciones.
 
-#### Metricas de calidad
+### Metricas de calidad
 
 - Directas: Evalúan la calidad del documento estimando el valor de los atributos de calidad de la SRS.
 
 - Indirectas: Evalúan la efectividad de las métricas del control de calidad usadas en el proceso en la fase de requerimientos
 
 
-### Summary
+## Summary
     1. The problem domain for software engineering is industrial strength software. 
 
     2. Software engineering problem domain This software is not just a set of computer programs but **comprises programs** and associated **data** and **documentation**.
@@ -386,7 +474,7 @@ Donde i refleja las filas y j las columnas. $w_{ij}$ es el peso de la función y
     4. The fundamental approach of software engineering to achieve the objectives is to separate the development process from the products. Software engineering focuses on process since the quality of products developed and the productivity achieved are heavily influenced by the process used. To meet the software engineering challenges, this development process is a phased process. Another key approach used in Software Engineering for achieving high Q&P is to manage the process effectively and proactively using metrics.
 
 
-#### Glosario
+# Glosario
 - KLOC: Líneas de Código en K. (Medida)
 - LOC: Líneas de Código (Medida)
 - PM: Persona/Mes

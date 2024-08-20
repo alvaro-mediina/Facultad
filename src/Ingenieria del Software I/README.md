@@ -15,6 +15,7 @@ En este documento dejaré escrito todo el contenido de la materia, desde teoría
 * [Teórico](Resumen.md)
 * [Prácticos](https://drive.google.com/drive/folders/14C9eILG6zNPhYipBI9z_8SBe50iJTXCG?usp=sharing)
   - [Práctico 1](https://docs.google.com/document/d/1C6W_nufv8FbT3c3O4J7KEj57NOGdsmMtjrCqyOhrDfc/edit?usp=sharing)
+  - [Práctico 2](https://docs.google.com/document/d/1Wv4i-r32ecbHBLn_eIJP1ADHPT6jvH0PxpIJnSuhw0g/edit?usp=sharing)
 * [Laboratorio](#laboratorio)
 
 ## Información principal de la materia
