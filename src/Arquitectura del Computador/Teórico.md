@@ -1,6 +1,14 @@
 # Teórico
 Aprenderemos en detalle el funcionamiento interno y el incremento de performance de computadoras y un uso intenso de lógica programable (FPGas, HDLS)..
 
+# Indice
+- [Tema 1: Hardware Description Languages (HDLs): VHDL y System Verilog (Un estudio comparativo)](#tema-1-hardware-description-languages-hdls-vhdl-y-system-verilog-un-estudio-comparativo)
+
+- [Tema 2: Modelado Estructural y Comportamental](#tema-2-modelado-estructural-y-comportamental)
+
+- [Repaso ISA](#repaso-isa)
+
+
 # Tema 1: Hardware Description Languages (HDLs): VHDL y System Verilog (Un estudio comparativo)
 
 <p align="center">Lenguajes utilizados para escribir Hardware (Según Pablo)
@@ -274,6 +282,12 @@ endmodule
 
 #### Lógica secuencial - Registros
 
+- **always**:es una estructura particular que toma una lista de sensibilidad y un bloque de código. El bloque de código se ejecuta cada vez que uno de los elementos de la lista de sensibilidad cambia de valor. 
+
+- **always_comb**: no se le indica la lista de sensibilidad, se asumen que están todas las de las entradas.
+- **always_ff**: Como es un FF necesito definir correctamente la lista de sensibilidad. Siempre `clock` pero no siempre se utilizará `reset`. En este caso nos interesan las palabras reservadas `posedge` y `negedge`, dependerá de los flancos que quieramos tener en cuenta.
+
+
 - Flip Flops:
 
     ```verilog
@@ -357,10 +371,11 @@ endmodule
     endmodule
     ```
 
-    > Si le dejas la flecha ocurre en paralelo y si le ponés igual ocurre en serie y los `comentarios` del código lo representan.
+    > Si le dejas la flecha ocurre en paralelo(los `comentarios` del código lo representan) y si le ponés igual ocurre en serie, i.e secuencial.
 
 #### Latch
 Los latch son flip-flops transparentes, es decir, que la salida se actualiza en el flanco de subida y bajada. En cambio los flip-flops se actualizan en el flanco de subida.
+
 
 ```verilog
     module latch(input logic clk,
@@ -369,3 +384,124 @@ Los latch son flip-flops transparentes, es decir, que la salida se actualiza en 
         always_latch
         if(clk) q<=d;
     endmodule
+
+```
+#### Multiplexores
+```verilog
+//System Verilog
+//Parameterized N:2^N
+//2**
+module decoder # (parameter N=3)
+                 (input logic [N-1:0] a,
+                  output logic [2**N-1:0] y);
+
+//Proceso que me permite 
+always_comb
+    begin
+        y = 0;
+        y[a] = 1;
+    end
+endmodule
+
+```
+### Módulos parametrizados N-bit
+
+```verilog
+module andN
+       #(parameter width=4)
+       (input logic [width-1:0] a;
+        output logic            y);
+
+//Variable de tipo especial
+genvar i;
+//Variables de tipo interna (Cables)
+logic [width-1:1] x;
+
+generate
+    for (i=0; i<width; i=i+1) begin:forloop
+        if (i == 1)
+            assign x[i] = a[0] &  a[1];
+        else
+            assign x[i] = x[i-1] & a[i];
+    end
+endgenerate
+
+assign y = x[width-1];
+```
+
+### Memoria RAM con separador Din y Dout
+
+<p align ="center" ><img src="imgs/image-12.png"></p>
+
+- N: 6
+- M: 32 bits
+- mem: arreglo bidimencional de 2**6 x 32 bits
+- clk: Reloj
+- WE: Write Enable
+- Din: bus de datos [31-0]
+- Dout: bus de datos [31-0]
+
+<p align="center" style="font-size:30px">Sintetización</p>
+
+<p align ="center" ><img src="imgs/image_13.png"></p>
+
+<br>
+
+En el siguiente ejemplo tener en cuenta cuando asignar el dato, en este caso cuando `WE` es 0. En el caso de `WE` es 1 se asigna 'z que es alta impedancia. 
+
+<p align ="center" ><img src="imgs/image-14.png"></p>
+
+
+-tri: alta impedancia (bus donde salen los datos y un bus donde entran los datos por separado)
+- posedge: flanco de subida.
+
+### Memoria ROM
+
+Recordar que la memoria ROM es un combinacional, en este ejemplo se detalla una mamoria ROM pequeña.
+
+<p align ="center" ><img src="imgs/image-15.png"></p>
+
+### Test Benches
+
+- . # Unidades de tiempo
+
+Entorno (Wrapper) de pruebas que se utiliza para verificar y validar el funcionamiento de un diseño de hardware, como un circuito digital o un sistema basado en FPGA (Field-Programmable Gate Array). Los Test Benches son fundamentales en el proceso de diseño de hardware, ya que permiten simular y probar cómo se comporta un circuito bajo diversas condiciones antes de implementarlo físicamente.
+
+#### Llamada Sofisticada
+ - dut: Device Under Test
+ - Las demoras con #, son esenciales para que le dé tiempo a los `asserts` para actuar.
+
+<p align ="center" ><img src="imgs/image-16.png"></p>
+
+#### En un archivo de vector (Simulación completa)
+
+- 'bx: es indefinido
+- $finish: terminar la simulación
+<p align ="center" ><img src="imgs/image-17.0.png" width="400px"></p>
+
+<p align ="center" ><img src="imgs/image-17.png" width="400px"></p>
+
+<p align ="center" ><img src="imgs/image-18.png" width="400px"></p>
+
+# Repaso ISA
+
+Recordar el formato, normalmente:
+
+* |INSTRUCCIÓN| **|Almacenamiento|**, **|V1|**, **|V2|**
+
+
+Por ejemplo ADD a, b, c // se obtiene a = b + c
+
+LEGv8 tiene archivos de registro de 32 x 64bits. i.e 5 entradas de address de palabras de 64 bits.
+ - 32 registros de 64 bits de largo.
+
+No pueden tener otras entradas de address porque sino el direccionado de las instrucciones debería ser más grande.
+
+* Los datos de 64-bits son llamados "doubleword" X0 a X30.
+* Los datos de 32-bits son llamados "word" de W0 a W30.
+
+**Registros**
+
+- XZR: Registro con cero. No se puede escribir en él.
+
+<p align ="center" ><img src="imgs/image-19.png" width="400px"></p>
