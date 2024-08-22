@@ -558,7 +558,7 @@ Consisten de elementos y relevaciones entre ellos, y describen una estructura.
 - Cada componente tiene un tipo representados con distintos símbolos.
 - Las componentes utilizan interfaces o puertos para comunicarse con otras componentes.
 
-![alt text](image.png)
+![alt text](image-5.png)
 
 Tener en cuenta que existe un estándar para estos símbolos.
 
@@ -568,7 +568,7 @@ Tener en cuenta que existe un estándar para estos símbolos.
 - Pueden no ser unidireccionales.
 - Tiene un nombre para identificarlos y un tipo que describe su comportamiento.
 
-![alt text](image-1.png)
+![alt text](image-6.png)
 
 #### Ejemplo
 
@@ -586,7 +586,7 @@ servidor y servidor de autenticación.)
 
 **Extensión II:**Resultó que la base de datos está caída con más frecuencia de la esperada. Además, es aceptable que los estudiantes reciban resultados parciales un poco desactualizados (una desactualización de 5 encuestados es tolerable). Para incrementar la disponibilidad del sistema se decidió agregar una caché.
 
-![alt text](image-2.png)
+![alt text](image-7.png)
 
 ## Estilos arquitectónicos para la vista de C&C: Tubos y Filtros (Pipe and Filter)
 
