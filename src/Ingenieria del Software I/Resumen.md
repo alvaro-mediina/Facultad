@@ -563,9 +563,9 @@ Consisten de elementos y relevaciones entre ellos, y describen una estructura.
 - Cada componente tiene un tipo representados con distintos símbolos.
 - Las componentes utilizan interfaces o puertos para comunicarse con otras componentes.
 
-![alt text](image-5.png)
+<div align="center"><img src="imgs/image-5.png" width="500px"></div>
 
-Tener en cuenta que existe un estándar para estos símbolos.
+<p align="center">Tener en cuenta que existe un estándar para estos símbolos.</p>
 
 #### Conectores
 - Son mecanismos de interacción complejos.
@@ -573,7 +573,7 @@ Tener en cuenta que existe un estándar para estos símbolos.
 - Pueden no ser unidireccionales.
 - Tiene un nombre para identificarlos y un tipo que describe su comportamiento.
 
-![alt text](image-6.png)
+<div align="center"><img src="imgs/image-6.png" width="500px"></div>
 
 #### Ejemplo
 
@@ -591,7 +591,10 @@ servidor y servidor de autenticación.)
 
 **Extensión II:**Resultó que la base de datos está caída con más frecuencia de la esperada. Además, es aceptable que los estudiantes reciban resultados parciales un poco desactualizados (una desactualización de 5 encuestados es tolerable). Para incrementar la disponibilidad del sistema se decidió agregar una caché.
 
-![alt text](image-7.png)
+<br>
+
+<div align="center"><img src="imgs/image-7.png" width="500px"></div>
+
 
 ## Estilos arquitectónicos para la vista de C&C: Tubos y Filtros (Pipe and Filter)
 
@@ -619,6 +622,10 @@ Hay dos variantes principales:
  - Estilo pizarra: Cuando se agregan/modifican datos en el repositorio, se informa a todos los usuarios.
  - Estilo repositorio: Los usuarios leen y escriben en el repositorio, pero no se informan entre ellos.
 
+<br>
+- Activos.
+- No activos.
+
 Ej: Guaraní es un repositorio (dato compartido)
 
 #### Estilo cliente-servidor
@@ -632,6 +639,7 @@ Ej: Guaraní es un repositorio (dato compartido)
 - Estilo de procesos que se comunican.
 
 ## Documentación del diseño arquitectónico
+
 ### Organización
 - Contexto del sistema y la arquitectura.
 - Descripción de las vistas de la arquitectura.
@@ -677,6 +685,112 @@ Evalúa las consecuencias de las decisiones arquitectónicas en relación a dete
 - Scoping.
 
 ### Vista de asignación de recursos
+
+# Chapter 6: Diseño de software
+- Comienza una vez que vez que los requerimientos están definidos
+- Se realiza antes de la implementación
+- Es el lenguaje intermedio entre los requerimientos y el código.
+- Se procede desde las representaciones más abstractas a representaciones más concretas:
+     1. Análisis - SRS
+     2. Arquitectura
+     3. Diseño
+     4. Código
+     5. Testing
+     6. Entrega y Validación
+
+## Criterios para evaluar el diseño
+Principios fundamentales que debería seguir un buen diseño:
+- Partición y jerarquía.
+- Abstracción.
+- Modularidad.
+
+### Partición y jerarquía
+Dividir el problema en pequeñas partes que sean manejables para así poder solucionarse separadamente. Cada una de las partes a su vez puede modificarse por separado. No son totalmente independientes entre sí, deben comunicarse/cooperar para solucionar problemas. Dicha comunicación agrega complejidad.
+
+A medida que la cantidad de componentes aumenta, el costo del particionado también aumenta.
+
+Usualmente la jerarquía está ligada a "es parte de".
+
+### Abstracción
+La idea de la abstracción es ocultar detalles.
+
+Durante el proceso de diseño:
+- Los componentes no existen.
+- Permite control de la complejidad.
+- Independencia entre componentes (manejarlos de forma separada)
+
+Hay dos mecanismos comunes de abstracción:
+* Funcional
+* De datos
+
+Funcionalidad:
+- Los datos se tratan como objetos junto a sus operaciones.
+- Las operaciones definidas para un objeto sólo pueden realizarse sobre el objeto.
+
+### Modularidad
+Un sistema es modular si consiste de componentes discretos tal que puedan implementarse separadamente y un cambio en ellas puede que tenga un mínimo impacto sobre otras.
+
+## Principios de diseño
+De los enfoques más comunes: **top-down** y **bottom-up**
+- Si se manejan de forma pura, no son prácticos.
+- Generalmente se utilizan de forma combinada.
+
+## Conceptos a nivel módulo
+Un módulo es una parte lógicamente separable de un programa. Es una unidad discreta e identificable respecto a la compilación y la carga.
+
+Criterios:
+- Acoplamiento: 
+- Cohesión: Hacer lo que se dice, decir lo que hay que hacer.
+
+Objetivo: Menor acoplamiento, mayor cohesión.
+
+### Acoplamiento
+Requiere más conocimiento de un módulo para comprender otro módulo. Captura la noción de dependencia
+
+Los factores más importantes que influyen en el acoplamiento:
+- Tipo de conexiones entre módulos.
+- Complejidad de las interfaces.
+- Tipo de flujo de información entre módulos.
+
+El acoplamiento entre módulos queda definido por la "fuerza de conexión" entre dichos módulos.
+
+### Cohesión
+Relación intra-modular (Dentro del módulo).
+
+Niveles de cohesión: Contiene elementos que cumplen distintos/as roles/funciones.
+- Casual (No queremos)
+- Lógica
+- Temporal
+- Temporal
+- Procedural
+- Comunicacional
+- Secuencial
+- Funcional (Si queremos)
+
+Queremos intentar escribir módulos con una descripción simple, i.e que se pueda describir con una oración corta.
+
+> Todo arquitecto de software tiene muy en cuenta la cohesión y el acoplamiento. (Entra en la parte de diseño)
+
+Principales criterios para evaluar:
+- Corrección
+- Eficiencia
+- Simplicidad
+
+### Corrección
+- Es fundamental.
+- Es factible dada las restricciones (dadas en la SRS)
+
+### Eficiencia
+- Le compete el uso apropiado de los recursos del sistema (principalmente CPU y memoria)
+
+### Simplicidad
+- Tiene impacto directo en mantenimiento.
+- El mantenimiento es caro.
+- Un diseño simple facilita la comprensión  del sistema, hace al software mantenible.
+- Facilita el testing (Buscar errores).
+- Facilita el descubrimiento y correción de bugs, debugging (Encontrar la fuente de los errores).
+- Facilita la modificación del código.
+
 
 
 

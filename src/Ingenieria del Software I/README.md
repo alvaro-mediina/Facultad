@@ -98,6 +98,14 @@ A tener en cuenta:
 ### Estilos
 Saber los 6 estilos y sus restricciones.
 
+### Arquitectura del software
+- Vista de componentes y conectores: Los elementos son **entidades de ejecución**...
+
+- Saberse los 5 pasos del método de análisis ATAM y poder explicarlo con palabras simples.
+
+### Conceptos a nivel de módulo
+- Lo que se quiere es tener bajo acoplamiento
+- Tipos de acoplamiento
 ## Bibliografía
 
 - **Pakaj Jalote: “An Integrated Approach to Software Engineering”, 3ra ed., Springer**
