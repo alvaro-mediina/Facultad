@@ -8,7 +8,6 @@ En este archivo se encontrará un resumen para poder tener a mano los conceptos 
 </p>
 
 
-
 # Índice
 - **[Chapter 1: Introduction](#chapter-1-introduction)**
     - [The Problem Domain](#the-problem-domain)
@@ -52,7 +51,6 @@ Una vez entragado el software, éste requiere mantenimiento.
 <p align="center"><strong>El mantenimiento puede costar más que el desarrollo del software</strong></p>
 
 ## Desafíos de la Ingeniería del Software
-
 La Ingeniería del software es la aplicación de un **enfoque sistemático**, disciplinado y cuantificable al desarrollo, operacioón y mantenimiento del software. Hacemos alusión a enfoque sistemático por la metodología y prácticas existentes para solucionar un problema dentro de un dominio determinado.
 
 Tratar de entender que el usuario/cliente quiere para crear el software; Satisfacer al cliente.
@@ -308,7 +306,7 @@ recomenzar.
 
 ## Modelado orientado a Objetos
 
-![alt text](imgs/image-2.png)
+<p align="center"><img src="imgs/image-2.png"></p>
 
 - Cada clase está conformada por nombre, atributos y servicios.
 
@@ -406,12 +404,25 @@ Conceptos básicos:
 - Para escribir, utilizar reglas simples en las expresiones.
 - Ser los más precisos posible en los nombres.
 
+### Elaboración de los casos de uso - Casos de uso
+- Los cuatro niveles pueden dirigir el proceso de análisis comenzando desde lo más abstracto y agregando más detalles cuál es el adecuado.
+- Para escribir, utilizar reglas de buena escritura técnica: 
+  - Usar gramática simple / oraciones simples.
+  - Especificar claramente todas las partes del caso de uso.
+  - Cuando sea necesario, combinar o dividir pasos.
+  
+
 ## Validación de los requerimientos
 Debido a la naturaleza de esta etapa, hay muchas posibilidades de malentendidos, implicando que muchos errores son posibles.
  - Es caro corregir los defectos de requerimientos más tarde.
  - Se deben intentar corregir en esta etapa.
+ - Los errores más comunes son:
+     - Omisión
+     - Inconsistencia
+     - Hechos incorrectos
+     - Ambigüedad
  - La SRS se revisa por un grupo de personas.
- - Proceso
+ - Proceso.
  - Lista de control:
     * ¿Se definieron todos los recursos de hardware?
     * ¿Se especificaron los tiempos de respuestas de las funciones?
@@ -420,39 +431,43 @@ Debido a la naturaleza de esta etapa, hay muchas posibilidades de malentendidos,
     * ...
 Además, existen herramientas para el modelado y análisis de especificaciones. 
 - Se escriben en lenguajes de especificación formal.
-
+- Hay herramientas semiautomáticas que soportan estos lenguajes.
+- Permiten verificar consistencia, dependencias circulares, o propiedades específicas.
+- También permiten simular para poder comprender completitud y corrección.
 ## Métricas
 
-> Poner un valor para luego compararlo con nuevos valores para así **analizar errores** y **mejoras**. 
+Tomar un valor para compararlo con nuevos valores para **analizar errores** y **mejoras**. 
 
 Para poder estimar costos y tiempos y planear el proyecto se necesita "medir" el esfuerzo que demandará.
  
- - El esfuerzo del proyecto depende de muchos factores.
- - El **tamaño** es el principal factor, validando por muchos experimentos y datos del análisis.
+El **tamaño** es el principal factor, validando por muchos experimentos y datos del análisis. Al principio el **tamaño** sólo puede ser estimado.
+
+Una **métria** es importante sólo si es útil para el seguimiento o control de costos, calendario o calidad.
 
 ### Punto función
 
-Estimación similar a las líneas de código. Se realiza después de la SRS pero se mantiene durante todo el proceso.
+Estimación similar a las líneas de código (LOC). Se realiza después de la SRS pero se mantiene durante todo el proceso.
 
-¿Para qué quiero el punto función?
+**¿Para qué quiero el punto función?**
+En principio para medir el tamaño de la SRS en términos de la funcionalidad.
 
-- Es una estimacióon similar a la métrica LOC.
-- Se determina sólo con la SRS.
-- Define el tamaño en términos de la "funcionalidad"
+- El punto función sólo está determinado por la SRS.
 
-Tipos de funciones:
- - Entradas externas: tipos de entrada externas a la aplicación
- - Salidas externas: salidas del sistema
- - Archivos lógicos internos
- - Archivos de interfaz externa.
- - Transacciones externas
+Tipos de funciones(funcionalidad):
+ - Entradas externas (dato/control externa a la aplicación)
+ - Salidas externas (dato/control que deja el sistema)
+ - Archivos lógicos internos (Grupo lógico de dato/ control de información generado/Usado/Manipulado)
+ - Archivos de interfaz externa (Archivos pasados/compartidos entre aplicaciones)
+ - Transacciones externas (Input/Output inmediatos; Queries)
 
- > Básicamente agarro la SRS y empiezo a explicar el uso las funciones.
+<br>
+
+ Básicamente agarro la SRS y empiezo a explicar el uso las funciones.
+
+<p align="center"><img src="imgs/image-3.png"></p>
 
 
- ![alt text](imgs/image-3.png)
-
- > De esta tabla necesito saber las partes de la tabla.
+ <p align="center">De esta tabla necesito saber las partes de la tabla.</p>
 
  
  Para hacer un punto de función debo conocer la fórmula de la UFP:
@@ -463,25 +478,15 @@ Tipos de funciones:
 
 Donde i refleja las filas y j las columnas. $w_{ij}$ es el peso de la función y $C_{ij}$ es la cantidad de funciones.
 
-> Acordarse de la utilización del punto función, recordar que es para saber 
+> Acordarse de la utilización del punto función, recordar que es.
 
 ### Metricas de calidad
 
+La calidad de la SRS tiene impacto directo en los costos del proyecto. Por lo tanto se necesitan buenas métricas de calidad para evaluar la calidad de la SRS
+
 - Directas: Evalúan la calidad del documento estimando el valor de los atributos de calidad de la SRS.
 
-- Indirectas: Evalúan la efectividad de las métricas del control de calidad usadas en el proceso en la fase de requerimientos
-
-
-## Summary
-    1. The problem domain for software engineering is industrial strength software. 
-
-    2. Software engineering problem domain This software is not just a set of computer programs but **comprises programs** and associated **data** and **documentation**.
-
-    Industrial strength software is expensive and difficult to build, expensive to maintain due to changes and rework, and has high quahty requirements.
-
-    3. Software engineering is the discipline t h a t aims to provide methods and procedures for systematically developing industrial strength software. Thee main driving forces for software engineering are the problem of scale, quality and productivity (Q&P), consistency, and change. Achieving high Q & P consistently for problems whose scale may be large and where changes may happen continuously is the main challenge of software engineering.
-
-    4. The fundamental approach of software engineering to achieve the objectives is to separate the development process from the products. Software engineering focuses on process since the quality of products developed and the productivity achieved are heavily influenced by the process used. To meet the software engineering challenges, this development process is a phased process. Another key approach used in Software Engineering for achieving high Q&P is to manage the process effectively and proactively using metrics.
+- Indirectas: Evalúan la efectividad de las métricas del control de calidad usadas en el proceso en la fase de requerimientos. **El proceso debe estar bajo control estadístico.**
 
 
 # Chapter 4: Arquitectura de software
