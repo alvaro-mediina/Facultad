@@ -18,6 +18,11 @@ Se pide investigar por nuestra cuenta el funcionamiento de los distintos **coman
 - **><** (redirecciones)
 ---
 
+Uso de las redirecciones
+* **>** : Redirección de la salida estándar a un archivo. En caso de no crear el archivo, lo crea.
+* **>>** : Redirección de la salida estándar a un archivo. En caso de no crear el archivo, lo crea. Si el archivo ya existe, añade la salida al final del archivo.
+* **<** : Redirección de la entrada estándar desde un archivo. En términos criollos utilizamos el contenido del archivo como entrada estándar para utilizarlo como argumento de un comando.
+
 ### Recursos útiles
 [Machete lindo proporcionado por la cátedra](https://drive.google.com/file/d/1QFROtJe_TtXnQqAf656BFQgQ8AyyYwpC/view)
 
@@ -179,7 +184,9 @@ El comando ip es una herramienta poderosa en Linux que se usa para mostrar y man
     2. Mezclar streams de audio. Graben un pequeño audio de voz, y descarguen de internet alguna pista de sonido que quieran poner de fondo. Usen ffmpeg para superponer las dos pistas. Tomen como ejemplo los podcasts de Nico!
 
 
+## Recursos útiles (Clase de 22 de agosto)
+* Los procesos background se ejecutan en segundo plano, es decir, no bloquean la terminal. Para ejecutar un proceso en background, se agrega el símbolo `&` al final del comando. Por ejemplo, `./script.sh &`.
 
+* Los procesos foreground se ejecutan en primer plano, es decir, bloquean la terminal. Para ejecutar un proceso en foreground, simplemente se ejecuta el comando sin agregar el símbolo `&`.
 
-
-
+* El comando `CTRL + Z` duerme el proceso pero no lo mata.

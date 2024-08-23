@@ -18,6 +18,8 @@ En este documento dejaré escrito todo el contenido de la materia, desde teoría
 
 ## Información principal de la materia
 
+La idea es ver las clases grabadas ya que las clases presenciales estarán pensadas para el entendimiento de los temas y la resolución de dudas.
+
 <p align="left" style="font-size:15px;">Clases: 
     <ul>
         <li><strong style="font-size:15px; color: yellow;">
