@@ -485,6 +485,8 @@ Entorno (Wrapper) de pruebas que se utiliza para verificar y validar el funciona
 
 # Repaso ISA
 
+* [GreenCard](GreenCardLEGv8_OK.pdf)
+
 Recordar el formato, normalmente:
 
 * |INSTRUCCIÓN| **|Almacenamiento|**, **|V1|**, **|V2|**
@@ -500,8 +502,26 @@ No pueden tener otras entradas de address porque sino el direccionado de las ins
 * Los datos de 64-bits son llamados "doubleword" X0 a X30.
 * Los datos de 32-bits son llamados "word" de W0 a W30.
 
-**Registros**
+## **Registros**
 
 - XZR: Registro con cero. No se puede escribir en él.
 
 <p align ="center" ><img src="imgs/image-19.png" width="400px"></p>
+
+## Operandos de memoria
+* La memoria está direccionada por bytes.
+    * Cada dirección de memoria son 8 bytes
+
+* Little Endian: La dirección más baja es el byte menos significativo.
+* Big Endian: La dirección más baja es el byte más significativo.
+
+* La memoria rom es una memoria de micro código.
+
+* Campos de instrucciones
+* Rm: Segundo argumento de registro.
+* Rn: Primer argumento de registro.
+* Rd: Registro de destino.
+* Rt: Registro de target
+
+## Máscara
+El concepto de máscara se utiliza para filtrar bits de un registro. Por ejemplo se lo puede hacer con la instrucción AND, tal que tengo al registro que quiero filtrar con una máscara de un registro que tiene unos en los lugares que quiero filtrar y ceros en los que no. Para lograr este efecto puedo utilizar otras compuertas.

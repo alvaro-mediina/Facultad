@@ -1,0 +1,63 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/simulation/modelsim
+vsillyfunction
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+!s110 1724428534
+!i10b 1
+!s100 V?N_ec?X]UDh9[co:;6X32
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IlB2Q_3891oYnaBIDJhGPd1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+w1724427379
+8/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction.sv
+F/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction.sv
+!i122 0
+L0 1 4
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1724428534.000000
+!s107 /home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction|/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction.sv|
+!i113 1
+Z6 o-sv -work work
+Z7 !s92 -sv -work work {+incdir+/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction}
+Z8 tCvgOpt 0
+vsillyfunction_tb
+R1
+!s110 1724428535
+!i10b 1
+!s100 1<Q@<hW[SkEVFZ<g`5:<?1
+R2
+IL86]VMC<^_D3UZIX@j5LN3
+R3
+S1
+R0
+w1724428512
+8/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction_tb.sv
+F/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction_tb.sv
+!i122 1
+L0 1 60
+R4
+r1
+!s85 0
+31
+R5
+!s107 /home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction_tb.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction|/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction_tb.sv|
+!i113 1
+R6
+R7
+R8

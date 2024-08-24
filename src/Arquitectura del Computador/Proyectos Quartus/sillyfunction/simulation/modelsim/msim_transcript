@@ -1,0 +1,52 @@
+# do sillyfunction_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying /home/alvaro-medina/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -sv -work work +incdir+/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura\ del\ Computador/Proyectos\ Quartus/sillyfunction {/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 12:55:34 on Aug 23,2024
+# vlog -reportprogress 300 -sv -work work "+incdir+/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction" /home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction.sv 
+# -- Compiling module sillyfunction
+# 
+# Top level modules:
+# 	sillyfunction
+# End time: 12:55:34 on Aug 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -sv -work work +incdir+/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura\ del\ Computador/Proyectos\ Quartus/sillyfunction {/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction_tb.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 12:55:34 on Aug 23,2024
+# vlog -reportprogress 300 -sv -work work "+incdir+/home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction" /home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction_tb.sv 
+# -- Compiling module sillyfunction_tb
+# 
+# Top level modules:
+# 	sillyfunction_tb
+# End time: 12:55:35 on Aug 23,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  sillyfunction_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" sillyfunction_tb 
+# Start time: 12:55:35 on Aug 23,2024
+# Loading sv_std.std
+# Loading work.sillyfunction_tb
+# Loading work.sillyfunction
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+#          8 tests completed with          0 errors
+# ** Note: $stop    : /home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction_tb.sv(56)
+#    Time: 105 ps  Iteration: 1  Instance: /sillyfunction_tb
+# Break in Module sillyfunction_tb at /home/alvaro-medina/Documentos/Facultad/Facultad/src/Arquitectura del Computador/Proyectos Quartus/sillyfunction/sillyfunction_tb.sv line 56
+# End time: 12:56:04 on Aug 23,2024, Elapsed time: 0:00:29
+# Errors: 0, Warnings: 0
