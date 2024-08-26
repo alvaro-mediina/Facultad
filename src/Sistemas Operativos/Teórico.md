@@ -166,12 +166,104 @@ Así, UNIX sigue vivo, más importante hoy que nunca. Los dioses de la computaci
 
 ## Procesos
 
-##
+Definición informal: Programa en ejecución
 
-# Glosario
+El programa en sí mismo es una cosa sin vida: solo está allí en el disco, un monton de instrucciones (y quizás ́algunos datos estáticos), esperando entrar en acción. Es el sistema  ́operativo el que toma estos bytes y los pone en marcha, transformando el programa en algo util.
+
+---
+### El problema en cuestión:
+¿Cómo proporcionar la ilusión de muchas CPU's? A pesar de que solo hay unas pocas CPUs físicas disponibles, ¿Como puede el sistema operativo proporcionar la ilusion de un suministro casi infinito de dichas CPUs?
+
+---
+
+El sistema operativo crea esta ilusión **virtualizando** la CPU.
+
+Al ejecutar un proceso, detenerlo y luego ejecutar otro, y así sucesivamente, el OS puede promover la ilusión de que existen muchas CPUs virtuales cuando en realidad solo hay una CPU física (o algunas). Esta técnica básica, conocida como compartición de tiempo (time sharing) de la CPU, permite a los usuarios ejecutar tantos procesos concurrentes como deseen; el costo potencial es el rendimiento, ya que cada proceso se ejecutará más lentamente si la(s) CPU(s) deben compartirse.
+
+---
+### TIP: Usar time sharing (space sharing)
+El tiempo compartido es una tecnica básica usada por un SO para compartir un recurso. Al permitir que el recurso sea usado un ratito por una entidad y luego otro ratito por otra, y así sucesivamente, el recurso en cuestion (por ejemplo, la CPU, o un enlace de una red) puede ser compartido por muchos. La contrapartida del tiempo compartido es el espacio compartido, donde un recurso se divide (en el espacio) entre aquellos que deseen utilizarlo. Por ejemplo, el espacio en disco es naturalmente un recurso de espacio compartido; una vez que se asigna un bloque a un archivo, normalmente no se asigna a otro archivo hasta que el usuario elimina el archivo original.
+
+---
+
+Para implementar la virtualizacion de la CPU, y para implementarla bien, el SO necesitara tanto maquinaria de bajo nivel como inteligencia de alto nivel. A la maquinaria de bajo nivel la llamamos mecanismos; los mecanismos son métodos o protocolos de bajo nivel que implementan una parte de la funcionalidad necesaria. Por ejemplo, mas adelante aprenderemos cómo implementar un  ́cambio de contexto, que le da al SO la capacidad de dejar de ejecutar un pro- grama y empezar a ejecutar otro en una CPU determinada.
+
+Encima de estos mecanismos reside parte de la inteligencia del SO, en forma de políticas. Las políticas son algoritmos para tomar algun tipo de decisión dentro del SO. Por ejemplo, dado un número de programas posibles para ejecutar en una CPU, ¿que programa debería ejecutar el SO? Una política de planificación en el SO tomará esta decision, probablemente utilizando información histórica (por ejemplo, ¿que programa se ha ejecutado más en el ultimo minuto?), conocimiento de la carga de trabajo (por ejemplo, que tipos de programas se ejecutan) y metricas de rendimiento (por ejemplo, ¿el sistema esta optimizando el rendimiento interactivo o el rendimiento de procesamiento?) para tomar su decision.
+
+### La abstracción: Un proceso
+
+Para entender lo que constituye un **proceso**, tenemos que entender su estado: lo que un programa puede leer o actualizar cuando se está ejecutando.
+
+- Un componente obvio del estado que comprende un proceso es su memoria. Las instrucciones se encuentran en la memoria; los datos que el programa en ejecución lee y escribe también se encuentran en la memoria. El proceso puede direccionar la memoria (**espacio de direcciones**).
+
+- Los registros forman parte del estado de un proceso; muchas instrucciones leen o actualizan explícitamente los registros y, por lo tanto, es evidente que son importantes para la ejecución del proceso.
+
+---
+### Tip: Separar políticas y mecanismos
+
+En muchos sistemas operativos, un paradigma de diseño común es **separar** las políticas de alto nivel de sus mecanismos de bajo nivel. 
+- Se puede pensar en el **mecanismo** como una forma de proporcionar la respuesta del `cómo` sobre un sistema; por ejemplo, ¿cómo realiza un sistema operativo un cambio de contexto? 
+- La política proporciona la respuesta del `cuál`; por ejemplo, ¿cuál proceso deber ́ıa ejecutar el sistema operativo en este momento? Separarlos permite cambiar facilmente las políticas sin tener que repensar el mecanismo y, por lo tanto, es una forma de modularidad, un principio general de diseño de software.
+
+---
+
+Registros importantes que forman parte del estado de un proceso:
+- **Program Counter**.
+- **Stack Pointer**.
+- **Frame Pointer**.
+
+Los programas también suelen acceder a dispositivos de almacenamiento persistente.
+
+### La API de los procesos
+
+- Crear: método para crear procesos.
+- Destruir: destrucción forzosa de procesos.
+- Esperar: A veces es útil esperar a que un proceso deje de ejecutarse, se suele proporcionar algún tipo de interfaz de espera.
+- Controles varios: Hay otros tipos de control posibles, entre ellos suspender un proceso para luego reanudarlo, enviar señales a un proceso, etc.
+- Estado: Normalmente también hay interfaces para obtener información sobre el estado de un proceso, como el tiempo que lleva en ejecución o el estado en el que se encuentra.
+
+### Creación de procesos: Un poco más detallado
+
+Lo primero que el OS debe hacer para ejecutar un programa es cargar su código y cualquier dato estático (por ejemplo, variables inicializadas) en la memoria, dentro del espacio de direcciones del proceso. Los programas residen inicialmente en el disco (o, en algunos sistemas modernos, en SSDs basados en flash) en algún tipo de formato ejecutable; por lo tanto, el proceso de cargar un programa y datos estáticos en la memoria requiere que el OS lea esos bytes del disco y los coloque en algún lugar de la memoria.
+
+En los primeros (o simples) sistemas operativos, el proceso de carga se realizaba de manera **eager** (apresurada), es decir, todo de una vez antes de ejecutar el programa.
+
+Los sistemas operativos modernos realizan el proceso de forma "lazy" (perezoso), es decir, cargando piezas de código o datos solo cuando son necesarios durante la ejecución del programa.
+
+Para comprender realmente cómo funciona la carga "lazy" de piezas de código y datos, tendrás que entender más sobre los mecanismos de paginación e intercambio (paging and swapping)
+
+Antes de ejecutar cualquier cosa, el OS claramente debe hacer algo de trabajo para llevar los bits importantes del programa desde el disco hasta la memoria.
+
+Una vez que el código y los datos estáticos están cargados en la memoria, hay algunas otras cosas que el OS necesita hacer antes de ejecutar el proceso. Se debe asignar algo de memoria para la pila de ejecución del programa (o simplemente stack).
 
 
+El OS también puede asignar algo de memoria para el heap del programa. En los programas en C, el heap se utiliza para datos que se solicitan dinámicamente de manera explícita; los programas solicitan dicho espacio llamando a `malloc()` y lo liberan llamando a `free()`. El heap es necesario para estructuras de datos como listas enlazadas, tablas hash, árboles y otras estructuras de datos interesantes. El heap será pequeño al principio; a medida que el programa se ejecuta y solicita más memoria a través de la API de la biblioteca `malloc()`, el OS puede intervenir y asignar más memoria al proceso para ayudar a satisfacer dichas solicitudes.
+
+- El OS también realizará algunas tareas de inicialización adicionales, particularmente relacionadas con la entrada/salida (I/O)
 
 
+Al cargar el código y los datos estáticos en la memoria, al crear e inicializar una pila y al realizar otras tareas relacionadas con la configuración de I/O, el OS finalmente ha preparado el escenario para la ejecución del programa. Ahora le queda una última tarea: iniciar la ejecución del programa en su punto de entrada, es decir, en `main()`. Al saltar a la rutina `main()`, el OS transfiere el control de la CPU al proceso recién creado, y así el programa comienza.
+
+### Estados de los procesos
+Un proceso puede estar en uno de los tres estados:
+- **Running (Corriendo)**: Proceso en ejecución en un procesador. Ejecución de instrucciones.
+- **Ready (Listo)**: Listo para ejecutarse, pero por algún motivo el SO no ha optado por hacerlo.
+- **Blocked (Bloqueado)**: Si un proceso esta bloqueado, ha realizado algÚn tipo de operacion que hace que no este listo para ejecutarse hasta que ocurra algun otro evento.
+
+<br>
+
+<div align="center"><img src="imgs/image.png"></div>
+
+<br>
+
+Pasar de **ready** a **running** significa que un proceso ha sido **scheduled**. Ser movido de **running** a **ready** significa que el proceso va a ser **descheduled**.
+
+Notar que hay muchas decisiones que debe tomar el SO, incluso en este ejemplo simple. Primero, el sistema tuvo que decidir ejecutar Proceso1 mientras Proceso_0 emitía una E/S; hacerlo mejora la utilizacion de los recursos al mantener la CPU ocupada. En segundo lugar, el sistema decidio no volver a cambiar a Proceso_0 cuando se completo su E/S; no está claro si esta es una buena decisión o no.  Este tipo de decisiones las toma el scheduler (planificador) del sistema operativo,
+
+### Estructura de datos
+
+- Nuevo estado, **proceso zombie**: A veces, un sistema tendrá un estado inicial en el que se encuentra el proceso cuando se está creando. Además, un proceso podría ser colocado en un estado final donde ha salido, pero aún no ha sido limpiado. 
+
+Este estado final puede ser útil, ya que permite que otros procesos (generalmente el padre que creó el proceso) examinen el código de retorno del proceso y vean si el proceso recién finalizado se ejecutó con éxito (generalmente, los programas devuelven cero en sistemas basados en UNIX cuando han completado una tarea con éxito, y un valor distinto de cero en caso contrario). Cuando termina, el padre realizará una llamada final (por ejemplo, wait()) para esperar la finalización del hijo y también para indicar al OS que puede limpiar cualquier estructura de datos relevante que hacía referencia al proceso que ahora está extinto.
 
 
