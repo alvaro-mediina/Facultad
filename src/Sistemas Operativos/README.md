@@ -59,3 +59,18 @@ En particular se utilizará el libro:
 En este apartado se encontrarán links a los distintas carpetas que contienen los laboratorios de la materia:
 
 - [Laboratorio 0](Laboratorio/Laboratorio%200/README.md)
+
+## Recursos Git
+* git branch: Muestra las ramas que existen en el repositorio.
+* git branch nombre_rama : Crea una nueva rama pero no se cambia a ella.
+* git checkout -b nombre_rama: Crear una nueva rama y se cambia a ella.
+* git checkout nombre_rama: Cambia a la rama que se le indica.
+
+* El archivo .gitignore se utiliza para ignorar archivos o carpetas que no se quieren subir al repositorio. Dentro del .gitignore: * .o
+
+Luego de agregar los cambios con add y hacer commit, para hacer push a la rama creada debo usar:
+git push --set-upstream origin nombre_rama (seteo de rama a donde voy a pushear las cosas)
+
+Ahora para unir la rama con la rama master debo hacer un pull request o merge request. Desde la página de Bitbucket en `create` seleccionar pull request.
+
+Si por esas casualidades surgen problemas de implementación en la rama master, causada por un merge, se puede revertir. Crear una nueva rama, realizar git fetch origin, git merge origin/main. Luego corregir el error y hacer pull request.

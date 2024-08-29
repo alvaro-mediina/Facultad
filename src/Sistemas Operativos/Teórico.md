@@ -267,3 +267,82 @@ Notar que hay muchas decisiones que debe tomar el SO, incluso en este ejemplo si
 Este estado final puede ser útil, ya que permite que otros procesos (generalmente el padre que creó el proceso) examinen el código de retorno del proceso y vean si el proceso recién finalizado se ejecutó con éxito (generalmente, los programas devuelven cero en sistemas basados en UNIX cuando han completado una tarea con éxito, y un valor distinto de cero en caso contrario). Cuando termina, el padre realizará una llamada final (por ejemplo, wait()) para esperar la finalización del hijo y también para indicar al OS que puede limpiar cualquier estructura de datos relevante que hacía referencia al proceso que ahora está extinto.
 
 
+## Interludio: API de procesos
+En este interludio, discutimos la creación de procesos en sistemas UNIX. UNIX presenta una de las formas más intrigantes de crear un nuevo proceso con un par de llamadas al sistema: `fork()` y `exec()`. Una tercera rutina, `wait()`, puede ser utilizada por un proceso que desee esperar a que un proceso que ha creado termine.
+
+> CRUX: Cómo crear y controlar procesos: ¿Qué interfaces debería presentar el OS para la creación y control de procesos? ¿Cómo deberían diseñarse estas interfaces para habilitar una funcionalidad poderosa, facilidad de uso y alto rendimiento?
+
+### fork() System Call
+La llamada al sistema fork() se utiliza para crear un nuevo proceso. Sin embargo, debes estar advertido: ciertamente es la rutina más extraña que jamás llamarás. El proceso que se crea es una copia (casi) exacta del proceso que lo llamó. Específicamente, aunque ahora tiene su propia copia del espacio de direcciones (es decir, su propia memoria privada), sus propios registros, su propio PC, etc. Cuando se crea el proceso hijo, ahora hay dos procesos activos en el sistema que nos importan: el padre y el hijo. Suponiendo que estamos ejecutando en un sistema con una sola CPU (por simplicidad), en ese punto podría ejecutarse el hijo o el padre. El planificador de la CPU, un tema que discutiremos con gran detalle pronto, determina qué proceso se ejecuta en un momento dado; dado que el planificador es complejo, generalmente no podemos hacer suposiciones fuertes sobre lo que elegirá hacer, y por lo tanto, qué proceso se ejecutará primero. Este no determinismo, como resulta, conduce a algunos problemas interesantes, particularmente en programas multihilo; por lo tanto, veremos mucho más no determinismo cuando estudiemos concurrencia en la segunda parte del libro.
+
+### The wait() System Call
+Hasta ahora, no hemos hecho mucho: solo crear un hijo que imprime un mensaje y sale. A veces, resulta bastante útil que un proceso padre espere a que un proceso hijo termine lo que está haciendo. Esta tarea se logra con la llamada al sistema wait() (o su versión más completa waitpid()) En este ejemplo (p2.c), el proceso padre llama a wait() para retrasar su ejecución hasta que el hijo termine de ejecutarse. Cuando el hijo finaliza, wait() regresa el control al padre. Al agregar una llamada a wait() en el código anterior, la salida se vuelve determinista. Incluso cuando el padre se ejecuta primero, espera educadamente a que el hijo termine de ejecutarse, luego wait() regresa, y entonces el padre imprime su mensaje.
+
+### exec() System Call
+una última y crucial pieza de la API de creación de procesos es la llamada al sistema exec(). Esta llamada al sistema es útil cuando quieres ejecutar un programa que es diferente al programa llamante. Por ejemplo, llamar a fork() solo es útil si deseas seguir ejecutando copias del mismo programa. Sin embargo, a menudo deseas ejecutar un programa diferente; exec()
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
+
+int main(int argc, char *argv[]) {
+    printf("hello (pid:%d)\n", (int) getpid());
+    int rc = fork();
+    if (rc < 0) { // fork falló; salir
+        fprintf(stderr, "fork failed\n");
+        exit(1);
+    } else if (rc == 0) { // hijo (nuevo proceso)
+        printf("child (pid:%d)\n", (int) getpid());
+        char *myargs[3];
+        myargs[0] = strdup("wc"); // programa: "wc"
+        myargs[1] = strdup("p3.c"); // argumento: archivo de entrada
+        myargs[2] = NULL; // marcar el final del array
+        execvp(myargs[0], myargs); // ejecuta word count
+        printf("esto no debería imprimirse");
+    } else { // el padre sigue por este camino
+        int rc_wait = wait(NULL);
+        printf("parent of %d (rc_wait:%d) (pid:%d)\n", rc, rc_wait, (int) getpid());
+    }
+    return 0;
+}
+```
+
+La llamada al sistema fork() es extraña; su compañero en el crimen, exec(), tampoco es tan normal. Lo que hace: dado el nombre de un ejecutable (por ejemplo, wc), y algunos argumentos (por ejemplo, p3.c), carga el código (y datos estáticos) de ese ejecutable y sobrescribe su segmento de código actual (y datos estáticos actuales) con él; el heap, la pila y otras partes del espacio de memoria del programa se re-inicializan. Luego, el sistema operativo simplemente ejecuta ese programa, pasando cualquier argumento como el argv de ese proceso. Así, no crea un nuevo proceso; más bien, transforma el programa que se está ejecutando (anteriormente p3) en un programa diferente (wc). Después de exec() en el hijo, es casi como si p3.c nunca se hubiera ejecutado; una llamada exitosa a exec() nunca regresa.
+
+### ¿Por qué? Motivando a la API
+Por supuesto, una gran pregunta que podrías tener es: ¿por qué construir una interfaz tan extraña para lo que debería ser el acto simple de crear un nuevo proceso? Bueno, resulta que la separación de fork() y exec() es esencial para construir un shell en UNIX, porque permite que el shell ejecute código después de la llamada a fork() pero antes de la llamada a exec(). Este código puede alterar el entorno del programa que está a punto de ejecutarse, lo que permite construir fácilmente una variedad de características interesantes.
+
+El shell es solo un programa de usuario. Te muestra un prompt y luego espera que escribas algo en él. Luego escribes un comando (es decir, el nombre de un programa ejecutable, más cualquier argumento); en la mayoría de los casos, el shell averigua dónde se encuentra el ejecutable en el sistema de archivos, llama a fork() para crear un nuevo proceso hijo que ejecute el comando, llama a alguna variante de exec() para ejecutar el comando, y luego espera a que el comando termine llamando a wait(). Cuando el hijo termina, el shell regresa de wait() y vuelve a imprimir un prompt, listo para tu próximo comando.
+
+La separación de fork() y exec() permite al shell hacer un montón de cosas útiles con relativa facilidad. Por ejemplo:
+```shell
+wc p3.c > newfile.txt
+```
+En el ejemplo anterior, la salida del programa wc se redirige al archivo de salida newfile.txt (el signo mayor que indica dicha redirección). La forma en que el shell logra esta tarea es bastante simple: cuando se crea el hijo, antes de llamar a exec(), el shell (específicamente, el código ejecutado en el proceso hijo) cierra la salida estándar y abre el archivo newfile.txt. Al hacer esto, cualquier salida del programa que está a punto de ejecutarse, wc, se envía al archivo en lugar de a la pantalla (los descriptores de archivos abiertos se mantienen abiertos a través de la llamada a exec(), lo que permite este comportamiento).
+
+La Figura 5.4 muestra un programa que hace exactamente esto. La razón por la que esta redirección funciona se debe a una suposición sobre cómo el sistema operativo gestiona los descriptores de archivos. Específicamente, los sistemas UNIX comienzan a buscar descriptores de archivos libres desde cero. En este caso, STDOUT_FILENO será el primero disponible y, por lo tanto, se asignará cuando se llame a open(). Las escrituras subsecuentes del proceso hijo al descriptor de archivo de salida estándar, por ejemplo, mediante rutinas como printf(), se dirigirán automáticamente al archivo recién abierto en lugar de a la pantalla.
+
+Notarás (al menos) dos detalles interesantes sobre esta salida. Primero, cuando se ejecuta p4, parece que no ha sucedido nada; el shell simplemente imprime el prompt de comando y está inmediatamente listo para tu próximo comando. Sin embargo, ese no es el caso; el programa p4 realmente llamó a fork() para crear un nuevo hijo y luego ejecutó el programa wc mediante una llamada a execvp(). No ves ninguna salida en la pantalla porque se ha redirigido al archivo p4.output. Segundo, puedes ver que cuando usamos cat para ver el archivo de salida, se encuentra toda la salida esperada de la ejecución de wc.
+
+Por ahora, basta con decir que la combinación de fork()/exec() es una manera poderosa de crear y manipular procesos.
+
+### Process Control and Users
+Más allá de fork(), exec() y wait(), existen muchas otras interfaces para interactuar con procesos en sistemas UNIX. Por ejemplo, la llamada al sistema kill() se utiliza para enviar señales a un proceso, incluyendo directivas para pausar, finalizar, y otras órdenes útiles. Para mayor comodidad, en la mayoría de los shells de UNIX, ciertas combinaciones de teclas están configuradas para enviar una señal específica al proceso que se está ejecutando; por ejemplo, control-c envía un SIGINT (interrupción) al proceso (normalmente terminándolo), y control-z envía una señal SIGTSTP (stop), pausando así el proceso en mitad de su ejecución (puedes reanudarlo más tarde con un comando, por ejemplo, el comando fg que se encuentra en muchos shells). Todo el subsistema de señales proporciona una infraestructura rica para entregar eventos externos a procesos, incluyendo formas de recibir y procesar esas señales dentro de procesos individuales, así como formas de enviar señales a procesos individuales o a grupos enteros de procesos.
+
+Para utilizar esta forma de comunicación, un proceso debe usar la llamada al sistema signal() para "capturar" varias señales; al hacerlo, se asegura de que cuando una señal particular se entregue a un proceso, este suspenderá su ejecución normal y ejecutará una porción específica de código en respuesta a la señal. Puedes leer en otra parte [SR05] para aprender más sobre las señales y sus múltiples complejidades.
+
+Esto naturalmente plantea la pregunta: ¿quién puede enviar una señal a un proceso y quién no? Generalmente, los sistemas que usamos pueden ser utilizados por múltiples personas al mismo tiempo; si una de estas personas pudiera enviar arbitrariamente señales como SIGINT (para interrumpir un proceso, probablemente terminándolo), la usabilidad y seguridad del sistema se verían comprometidas. Como resultado, los sistemas modernos incluyen una concepción sólida de la noción de un usuario.
+ * El usuario, después de ingresar una contraseña para establecer credenciales, inicia sesión para obtener acceso a los recursos del sistema.
+ * El usuario puede entonces lanzar uno o muchos procesos y ejercer control total sobre ellos (pausarlos, matarlos, etc.).
+ * Los usuarios generalmente solo pueden controlar sus propios procesos; es el trabajo del sistema operativo distribuir los recursos (como CPU, memoria y disco) a cada usuario (y sus procesos) para cumplir con los objetivos generales del sistema.
+
+### Herramientas útiles
+Existen muchas herramientas de línea de comandos que también son útiles. Por ejemplo, el comando ps te permite ver qué procesos están en ejecución; consulta las páginas de manual para obtener algunas banderas útiles que puedes pasar a ps. La herramienta top también es bastante útil, ya que muestra los procesos del sistema y cuántos recursos de CPU y otros están consumiendo. Curiosamente, muchas veces cuando ejecutas top, este afirma ser el que más recursos consume; quizás es un poco egocéntrico. El comando kill se puede usar para enviar señales arbitrarias a los procesos, al igual que el comando killall, que es un poco más amigable para el usuario. Asegúrate de usarlos con cuidado; si accidentalmente matas tu gestor de ventanas, la computadora frente a ti puede volverse bastante difícil de usar.
+
+Finalmente, hay muchos tipos diferentes de medidores de CPU que puedes usar para obtener una comprensión rápida de la carga en tu sistema; por ejemplo, siempre mantenemos MenuMeters (de Raging Menace Software) funcionando en nuestras barras de herramientas de Macintosh, para que podamos ver cuánto CPU se está utilizando en cualquier momento. En general, cuanta más información tengas sobre lo que está sucediendo, mejor.
+
+### Aside: El superusuario (ROOT)
+Un sistema generalmente necesita un usuario que pueda administrar el sistema y que no esté limitado de la misma manera que la mayoría de los usuarios. Dicho usuario debería poder matar un proceso arbitrario (por ejemplo, si está abusando del sistema de alguna manera), aunque ese proceso no haya sido iniciado por este usuario. Tal usuario también debería poder ejecutar comandos poderosos como shutdown (que, como es de esperarse, apaga el sistema). En los sistemas basados en UNIX, estas habilidades especiales se otorgan al superusuario (a veces llamado root). Mientras que la mayoría de los usuarios no pueden matar los procesos de otros usuarios, el superusuario sí puede. Ser root es como ser Spider-Man: con un gran poder viene una gran responsabilidad. Por lo tanto, para aumentar la seguridad (y evitar errores costosos), generalmente es mejor ser un usuario regular; si necesitas ser root, procede con cautela, ya que todos los poderes destructivos del mundo de la computación están ahora a tu alcance.
