@@ -16,8 +16,8 @@ Se hará distinción de lo que quiere el Owner y del juego base.
 ## Contenido
 
 * 36 fichas cajón de cuatro colores distintos.
-* 49 cartas de movimiento.
-* 4 mazos de 23 tarjetas figura.
+* 40 cartas de movimiento.
+* 50 cartas de figura.
 * 1 tablero de 6x6.
 
 <div align="center"><img src="imgs/image-8.png"></div>

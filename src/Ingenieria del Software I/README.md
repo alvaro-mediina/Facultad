@@ -106,6 +106,16 @@ Saber los 6 estilos y sus restricciones.
 ### Conceptos a nivel de módulo
 - Lo que se quiere es tener bajo acoplamiento
 - Tipos de acoplamiento
+
+
+### Conceptos a nivel módulo
+- Acoplamiento, definición y tipos de acoplamiento (Las flechas hacia abajo)
+- Cohesión, definición y  donde están los items.
+
+
+- Metodología de diseño estructurado: aprenderse los 5 pasos y poder detallar con una frase.
+
+- Hay acoplamientos de función y de objetos, saber diferenciarlos.
 ## Bibliografía
 
 - **Pakaj Jalote: “An Integrated Approach to Software Engineering”, 3ra ed., Springer**
