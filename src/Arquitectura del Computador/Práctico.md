@@ -6,6 +6,10 @@
 
 <br>
 
+# Versión importante
+==EP4CE22F17C6==
+---
+
 # Field Programmable Gate Arrays(FPGAs)
 
 Nos permite implementar circuitos digitales y nos permite reconfigurarlo. Es en dónde vamos a implementar el micro.
@@ -122,4 +126,5 @@ logic [3:0] testvectors [7:0] = '{
 //Al _ lo utilizo para señalar cual es la salida esperada.
 ```
 
-
+# Repaso a Leg v8
+Recordar que se utilizarán registros de 64 bits.
