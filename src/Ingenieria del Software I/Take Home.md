@@ -198,3 +198,9 @@ Estas cosas que se están pidiendo son distintas vistas del proyecto, se tienen 
 - Salas de partidas.
 
 - Para entrar a una sala necesito un nombre de usuario.
+
+
+# Corrección
+- Usuarios
+- Nomenclatura de palabras que se utilizarán.
+- Requisitos funcionales, mencionar todos los casos de uso y mencionar todo lo que pueden hacer los usuarios.
