@@ -128,3 +128,81 @@ logic [3:0] testvectors [7:0] = '{
 
 # Repaso a Leg v8
 Recordar que se utilizarán registros de 64 bits.
+
+# Sistemas de entrada y salida
+Los sistemas de I/O hoy por hoy se conectan a los mismos sistema de memoria. Antes teníamos un sistema de I/O separado, por ejemplo  ==antes== teníamos un bus de direccionado y un bus de datos.
+
+En la jerga yanqui los periféricos son los componentes fuera del procesador, en este caso periféricos son los artefactos de entrada salida como teclado, mouse, etc. Se referirá a `módulo de entrada/salida` como el módulo que se encarga de la `comunicación` entre el procesador y los periféricos.
+
+- No hay módulos de I/O pegados al procesador.
+
+- Los periféricos se conectan al sistema de memoria a través de interfaces ya que son muy lentos a comparación de la velocidad que puede llegar a manipular el cpu.
+
+
+## Tipos de buses basados en I/O
+- Se tiene un estándar de I/O (I/O que mapea un I/O). Tal estándar es un par de memorias controladas por un chip select, tal que el chip select activa el mapa de memoria de datos o de I/O. Estos dos mapas tienen dos mapas igual capacidad de direccionamiento (Tipo de Arquitectura que utiliza Intel, Arquitectura RISK utilizan sólo un espacio de memoria para ambos mapas).
+
+> Recordar que si tenemos un direccionado de $2^N$ direcciones, tenemos $N$ bits de dirección, si agregamos un bit más de dirección tenemos $2^{N+1}$ direcciones.
+
+Tenemos que la memoria de I/O es un "manejador" del hardware que se corresponderá con la memoria.
+
+## Memory-mapped I/O vs Standard I/O
+- Memory-mapped I/O: 
+  - No requiere instrucciones especiales
+
+- Standard I/O: 
+  - No les importa complejizar la ISA.
+  - No se pierde direccionado de memoria para los periféricos.
+
+## I/O Operation Methods
+- Polling-driven (I/O programada): Están escritos en programas.
+- Interrupt-driven: Interrupciones.
+- Direct Memory Access (DMA - Método actual)
+
+### Polling-driven
+El manejo se realiza mediante el uso de instrucciones de I/O por código de programa (if's, else's, bucles, etc)
+
+### Interrupt-driven
+Es un recurso de HW propio de la CPU: señal de **Int** externa para periféricos. Es literalmente una "interrupción" o quiebre de la ejecución de la ejecución normal del código de programa. Es asíncrona
+
+Cuando se produce una interrupción, el CPU debe verificar automáticamente si hay Int's pendientes. De esta forma el "polling" lo realiza la CPU por HW: **no consue ciclos de instrucción**. Si hay **Int**, el CPU salta automáticamente a una posición de memoria específica llamada **vector de insterrupciones**. El vector de interrupciones contiene el código (o su referencia) con los procedimientos necesarios para dar servicio a dicha interripción. Este código se denomina ISR (Interrupt Service Routine).
+
+#### ¿Dónde se aloja la ISR?
+- Se encuentra en una **dirección fija** (Fixed interrupt).
+- La dirección está establecida en la lógica de la CPU, no puede ser modificada.
+- La CPU puede contener la dirección real, o contener una instrucción de salto a la dirección real de la ISR sino hay suficiente espacio reservado.
+
+- Por otro lado se encuentra en una **dirección vectorizada** 
+
+
+### Sistemas de I/O
+Internamente formados por:
+- Registro de datos.
+- Registro de estado/control.
+- Lógica de interfaz con el dispositivo externo.
+- Lógica de I/O.
+- Lógica de interfaz con el dispositivo externo.
+
+### Consideraciones adicionales
+
+**Interrupciones Enmascarables vs No enmascarables**
+- Enmascarables: El programador puede mofificar un bit que causa que el procesador ignore una solicitud de interrupción (GEI)
+  - Muy importante para usar cuando se tienen porciones de códigos temporalmente críticas.
+- No enmacarables: 
+- Salto a una ISR:
+
+### Múltiples periféricos: Arbitraje
+Considere la situación donde muchos periféricos solicitan el servicio de una CPU simultáneamente (microcontrolador)  **Cual será atendida primero y en qué orden?**
+
+- Software Polling:
+  - Muy simple implementación por HW.
+  - El programador debe determinar en la ISR el origen de la INT buscando banderas INT FLG.
+  - La prioridad es establecida en la ISR según el órden de la búsqueda.
+- Arbitro de prioridades. (Priority arbiter): Es un módulo que recibe la señal de interrupción de distintos periféricos.
+- Conexión en cadena. (Daisy Chain)
+- Arbitraje de bus. (Network-oriented)
+  - Utilizado en arquitecturas de múltiples procesadores.
+  - El periférico debe primero obtener la sesión del bus para luego requerir una interrupción.
+
+### Excepciones e Interrupciones
+El mecanismo es el mismo pero no todas las excepciones son interrupciones ya que cuando se produce un evento de I/O se levanta una excepción pero no cuando se produce una excepción necesariamente es una interrupción.
