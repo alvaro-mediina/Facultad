@@ -525,3 +525,5 @@ No pueden tener otras entradas de address porque sino el direccionado de las ins
 
 ## Máscara
 El concepto de máscara se utiliza para filtrar bits de un registro. Por ejemplo se lo puede hacer con la instrucción AND, tal que tengo al registro que quiero filtrar con una máscara de un registro que tiene unos en los lugares que quiero filtrar y ceros en los que no. Para lograr este efecto puedo utilizar otras compuertas.
+
+
