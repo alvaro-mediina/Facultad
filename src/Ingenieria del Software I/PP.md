@@ -58,3 +58,17 @@
 
 - Criterios para evaluar el diseño. Factibilidad.
 - Principios fundamentales.
+- Acoplamiento y cohesión.
+  - Cuadro con flechas de ACOPLAMIENTO
+  - ¿En que parte se aplica? (En las FASES) ¿Qué es Cohesión?
+  - Cohesión, con varios niveles de cohesión más una frase de cada nivel.
+- Diagramas de estructura ¿Qué es y para que sirve?
+- Metodología de diseño estructurado.
+  - 5 pasos principales de la metodología.
+- MAI y MAO.
+- Métricas (FASE, CÓMO ES, PARA QUE ES)
+- Principios: abierto-cerrado, Liskov, etc.
+
+# Diseño detallado
+
+- PDL
